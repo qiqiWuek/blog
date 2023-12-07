@@ -3,7 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Github Pages</title>
+    <title>Notes</title>
+    <!-- 引入 marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // 读取并显示 Markdown 文件的函数
+        function loadMarkdown(filePath, elementId) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById(elementId).innerHTML = marked.parse(text);
+                })
+                .catch(err => console.error(err));
+        }
+
+        // 页面加载完成后添加事件监听器
+        document.addEventListener('DOMContentLoaded', function() {
+            // 给每个链接添加点击事件监听器
+            document.querySelectorAll('.inner-div a').forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // 阻止链接的默认行为
+                    loadMarkdown(this.getAttribute('href'), 'markdown-content');
+                });
+            });
+        });
+    </script>
     <style>
     html, body {
     height: 100%;
@@ -65,7 +89,7 @@
     }
 
     footer {
-    color: black;
+    color:  #2E303E; /* 文本颜色 */
     text-align: center;
     padding: 10px;
     position: absolute; /* 绝对定位 */
@@ -85,10 +109,12 @@
             <h1 class="contents-title">Contents</h1>
 
             <div class="inner-div">
-                <h2 >Read Notes</h2>
-                    <a href="before2023_text">before 2023</a>
-                    <a href="2023notes_text">read notes in 2023</a>
+                <h2>Read Notes</h2>
+                <!-- 更新这些链接，现在点击它们会加载 Markdown 文件 -->
+                <a href="before2023.md">before 2023</a>
+                <a href="2023notes.md">read notes in 2023</a>
             </div>
+
 
             <div class="inner-div">
                 <h2 >Journal</h2>
