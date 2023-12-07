@@ -1,6 +1,6 @@
 ## 2023 notes
 
-[![Home](../images/home.png){:width="40" height="40"}](../README.md)
+[home](../README.md)
 
 
 ### 跳岛某期 by 笛安
