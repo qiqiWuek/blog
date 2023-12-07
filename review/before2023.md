@@ -1,3 +1,7 @@
+## These notes were written before 2023
+
+[:house:](README.md)
+
 ### Exhalation by Ted Chiang 
 > “ I do not delude myself into thinking that this would be a way for me to live again,
 because I am not that air, I am the pattern that it assumed, temporarily. The pattern that is me,
