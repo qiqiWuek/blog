@@ -6,28 +6,29 @@
     <title>Notes</title>
     <!-- 引入 marked.js -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        // 读取并显示 Markdown 文件的函数
-        function loadMarkdown(filePath, elementId) {
-            fetch(filePath)
-                .then(response => response.text())
-                .then(text => {
-                    document.getElementById(elementId).innerHTML = marked.parse(text);
-                })
-                .catch(err => console.error(err));
-        }
+<!--    <script>-->
+<!--        /*读取并显示 Markdown 文件的函数*/-->
+<!--        function loadMarkdown(filePath, elementId) {-->
+<!--            fetch(filePath)-->
+<!--                .then(response => response.text())-->
+<!--                .then(text => {-->
+<!--                    document.getElementById(elementId).innerHTML = marked.parse(text);-->
+<!--                })-->
+<!--                .catch(err => console.error(err));-->
+<!--        }-->
 
-        // 页面加载完成后添加事件监听器
-        document.addEventListener('DOMContentLoaded', function() {
-            // 给每个链接添加点击事件监听器
-            document.querySelectorAll('.inner-div a').forEach(function(link) {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault(); // 阻止链接的默认行为
-                    loadMarkdown(this.getAttribute('href'), 'markdown-content');
-                });
-            });
-        });
-    </script>
+<!--        /*当页面加载完成后设置事件监听器*/-->
+<!--        document.addEventListener('DOMContentLoaded', function() {-->
+<!--            /*为每个链接添加点击事件监听器*/-->
+<!--            document.querySelectorAll('.inner-div a').forEach(function(link) {-->
+<!--                link.addEventListener('click', function(event) {-->
+<!--                    event.preventDefault(); /*阻止默认行为（不打开链接）*/-->
+<!--                    var filePath = this.getAttribute('href'); /*获取文件路径*/-->
+<!--                    loadMarkdown(filePath, 'markdown-content'); /*加载并显示 Markdown*/-->
+<!--                });-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
     <style>
     html, body {
     height: 100%;
@@ -111,8 +112,8 @@
             <div class="inner-div">
                 <h2>Read Notes</h2>
                 <!-- 更新这些链接，现在点击它们会加载 Markdown 文件 -->
-                <a href="before2023.md">before 2023</a>
-                <a href="2023notes.md">read notes in 2023</a>
+                <a href="before2023.html">before 2023</a>
+                <a href="2023notes.md" markdown="1">read notes in 2023</a>
             </div>
 
 
