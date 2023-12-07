@@ -14,10 +14,4 @@ include:
 title: qiqiWuek's notes    # 网站标题
 description: >  # 网站描述
   This is qiqiWuek's website 
-# url: "http://"  # 网站的 URL
 
-# 构建设置
-markdown: kramdown
-theme: minima  # 使用的 Jekyll 主题
-
-   
