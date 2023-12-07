@@ -1,6 +1,6 @@
 ## 2023 notes
 
-[<img alt="alt_text" width="40px" src="images/image.PNG" />](../README.md)
+[<img width="40px" src="../images/home.PNG" />](../README.md)
 
 ### 跳岛某期 by 笛安
 > 我以前一直以比自己生理年龄更小的角度在写作，现在我认为我是她曾经观察过的复杂世界的一部分。
