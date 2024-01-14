@@ -2,13 +2,6 @@
 
 [home](../README.md)
 
-### Exhalation by Ted Chiang 
-> “ I do not delude myself into thinking that this would be a way for me to live again,
-because I am not that air, I am the pattern that it assumed, temporarily. The pattern that is me,
-the patterns that are the entire world in which I live, would be gone.” 
-我不会欺骗自己说，这是我再生的方式，因为我不是那些空气，我只是空气流动模式的体现，暂时的体现。我是一种模式，
-我所存在的整个世界也是一种模式，而这一切都将不复存在。
-
 ### 日本美學 3: 侘寂
 > “ 荣格认为艺术创作过程中充满集体意识的作用。创作不是个人的自由‘他想象他在游泳，却看不见是暗流将他卷走’，这股暗流就是集体潜意识。不是歌德创作了《浮士德》而是相反。透过艺术创作，艺术家重新唤起了埋在人类潜意识中的原型。” 
 
@@ -24,3 +17,14 @@ the patterns that are the entire world in which I live, would be gone.”
 > “斯大林时代的一个主要悲剧就是，有那么多复杂的思考和备受折磨的才智，都被用于创作党的政策要求的那些头脑简单的宣传小说和诗歌了”
 
 多次提到并表达赞许的作家，托尔斯泰、陀思妥夫斯基、索尔仁尼琴、博尔赫斯、布罗茨基。
+
+### Exhalation by Ted Chiang
+> “ I do not delude myself into thinking that this would be a way for me to live again,
+because I am not that air, I am the pattern that it assumed, temporarily. The pattern that is me,
+the patterns that are the entire world in which I live, would be gone.”
+我不会欺骗自己说，这是我再生的方式，因为我不是那些空气，我只是空气流动模式的体现，暂时的体现。我是一种模式，
+我所存在的整个世界也是一种模式，而这一切都将不复存在。
+
+
+> 无论你做什么，总是先闪光后揿按钮。你无法愚弄预测器。 预测器的核心部件是反向延时电路 点。它向过去发送信号。等负延时能够大于一秒钟以后，这项技术的深层内涵会变得更加清楚，但这并不是我警告的重点。 迫在眉睫的问题是：预测器正在展示自由意志这东西根本不存在。
+
