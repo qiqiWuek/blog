@@ -12,9 +12,9 @@ Oct 28
 > 此刻雨没有停，夜静极了，猫再响亮地吃夜宵，我们都预备谁了。
 
 
-- **敦煌** 井上靖 Jan 18  
-- **独裁者手册** Bruce Bueno de Mesquita Jan 24
-- **都柏林人** Joyce James Jan 24    
+- 敦煌 井上靖 Jan 18  
+- 独裁者手册 Bruce Bueno de Mesquita Jan 24
+- 都柏林人 Joyce James Jan 24    
 
 
 ### 万历十五年 黄仁宇 Feb 16
