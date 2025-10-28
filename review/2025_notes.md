@@ -1,4 +1,4 @@
-## 2025 notes
+# 2025 notes
 
 [home](../README.md)
 
