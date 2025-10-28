@@ -1,6 +1,6 @@
 ---
-layout：default
-title：2025 notes
+layout: default
+title: 2025 notes
 ---
 # 2025 notes
 
@@ -131,9 +131,6 @@ Oct 28
 - 石川啄木：日本的第一个现代人 Keene Donald Sep 20
 - 短歌是我，悲伤的玩具 石川啄木 Sep 20
 - 太古和其他时间 Tokarczuk Olga Oct 06
-
-
-
 
 ### 自卑与超越 Alfred Adler Oct 22
 
