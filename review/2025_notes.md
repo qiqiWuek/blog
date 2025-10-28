@@ -128,7 +128,9 @@ Oct 28
 
 在现代资本主义社会里，工人，白领的身份认同与自尊基石是一个巨大的骗局。
 
-
+- 石川啄木：日本的第一个现代人 Keene Donald Sep 20
+- 短歌是我，悲伤的玩具 石川啄木 Sep 20
+- 太古和其他时间 Tokarczuk Olga Oct 06
 
 ### 自卑与超越 Alfred Adler Oct 22
 
