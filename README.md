@@ -13,10 +13,6 @@ On this website, I will record my reviews and sketches in both English and Chine
 
 [notes in 2025](review/2025_notes.md)
 
-
-## Sketches
-TBC...
-
 ## Stories
 TBC...
 
