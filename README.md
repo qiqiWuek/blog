@@ -1,4 +1,6 @@
-# Intro
+# QiqiWuek's Notes
+
+## Intro
 👋 Welcome, there. This website is always a work-in-progress. I will record my reviews and stories in both English and Chinese.
 
 ## Reviews
