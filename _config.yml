@@ -4,14 +4,18 @@
 #remote_theme: pages-themes/cayman@v0.2.0
 #remote_theme: pages-themes/midnight@v0.2.0
 remote_theme: mmistakes/minimal-mistakes@4.27.3
+
+minimal_mistakes_skin: "mint"   # 可选：配色方案（air, aqua, dark, dirt, neon, plum, sunrise, mint 等）
+
 plugins:
   - jekyll-remote-theme
+  - jekyll-include-cache        # ← 必须新增
   - jekyll-relative-links
+
 relative_links:
   enabled: true
   collections: true
-include:
-title: QiqiWuek's notes
-description: > 
-  This is qiqiWuek's website 
 
+title: QiqiWuek's Reading Notes
+description: >-
+  This is qiqiWuek's website
