@@ -1,3 +1,7 @@
+---
+layout: default
+title: 2023 notes
+---
 # 2023 notes
 
 [home](../README.md)

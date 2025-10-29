@@ -1,3 +1,7 @@
+---
+layout: default
+title: QiqiWuek's Reading Notes
+---
 # 📚 QiqiWuek's Reading Notes
 
 ## 👋 Intro

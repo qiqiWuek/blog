@@ -1,3 +1,7 @@
+---
+layout: default
+title: 2024 notes
+---
 # 2024 notes
 
 [home](../README.md)

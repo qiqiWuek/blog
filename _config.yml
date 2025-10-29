@@ -10,8 +10,7 @@ relative_links:
   enabled: true
   collections: true
 include:
-
-title: QiqiWuek's notes    # 网站标题
-description: >  # 网站描述
+title: QiqiWuek's notes
+description: > 
   This is qiqiWuek's website 
 
