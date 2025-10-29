@@ -5,16 +5,16 @@
 #remote_theme: pages-themes/midnight@v0.2.0
 remote_theme: mmistakes/minimal-mistakes@4.27.3
 
-minimal_mistakes_skin: "mint"   # 可选：配色方案（air, aqua, dark, dirt, neon, plum, sunrise, mint 等）
+minimal_mistakes_skin: "mint"  # 配色可选：air, aqua, dark, dirt, neon, plum, sunrise, mint
 
 plugins:
   - jekyll-remote-theme
-  - jekyll-include-cache        # ← 必须新增
+  - jekyll-include-cache     # ← 必须，加了它才不会报 include_cached 的错
   - jekyll-relative-links
 
-relative_links:
-  enabled: true
-  collections: true
+# ！！！项目页必须设置这两个
+url: https://qiqiwuek.github.io
+baseurl: /read_notes
 
 title: QiqiWuek's Reading Notes
 description: >-
