@@ -1,7 +1,3 @@
----
-layout: default
-title: Before 2023
----
 # Before 2023
 
 [home](../README.md)
