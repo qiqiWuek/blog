@@ -3,7 +3,7 @@ remote_theme: LeNPaul/Lagrange
 title: "QiqiWuek’s Blog"
 description: "Reading & Writing"
 url: "https://qiqiwuek.github.io"
-baseurl: "/read_notes"
+baseurl: "/blog"
 
 author: "QiqiWuek"
 avatar: "/images/carter.jpg"
