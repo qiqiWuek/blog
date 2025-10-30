@@ -3,11 +3,11 @@ layout: page
 title: "📚📚📚Review & Stories"
 permalink: /
 ---
-Welcome to my cozy rabbit hole! 
-This website is always a work in progress.  
-I record my reviews and stories in both English and Chinese.
+Welcome to my cozy rabbit hole!
+Here I keep my reflections and little stories, written in both English and Chinese — 
+a perpetual work always in progress. 
 
-## 📖 Posts
+## 📖 Reviews
 
 <div class="post-cards" markdown="0">
   {% include post-cards.html %}
