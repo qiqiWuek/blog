@@ -9,7 +9,6 @@
 <body>
 
 {% if page.image %}
-<!-- 有封面：图片半透明 + 口号 -->
 <section class="hero-banner" style="background-image:url('{{ page.image | relative_url }}')">
     <div class="hero-overlay"></div>
     <div class="hero-text">
@@ -19,7 +18,6 @@
     </div>
 </section>
 {% else %}
-<!-- 无封面：简洁标题区 -->
 <section class="hero-plain wrap">
     <h1 class="post-h1">{{ page.title }}</h1>
     {% if page.date %}<p class="post-meta">{{ page.date | date: "%b %d, %Y" }}</p>{% endif %}
@@ -27,12 +25,10 @@
 {% endif %}
 
 <main class="wrap post">
-    <!-- 面包屑 -->
     <nav class="crumbs">
         <a href="{{ '/' | relative_url }}">🥐 Back to Home</a>
     </nav>
 
-    <!-- 正文 -->
     <article class="post-body">
         {{ content }}
     </article>
@@ -43,5 +39,6 @@
         <p>© {{ "now" | date: "%Y" }} {{ site.author | default: site.title }} · Built with Jekyll</p>
     </div>
 </footer>
+
 </body>
 </html>

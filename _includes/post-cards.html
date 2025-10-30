@@ -2,13 +2,17 @@
     {% for post in site.posts %}
     <article class="post-card">
         <a class="post-thumb-link" href="{{ post.url | relative_url }}">
-            {% if post.image %}
-            <img class="post-thumb" src="{{ post.image | relative_url }}" alt="{{ post.title }}">
-            {% endif %}
+            <img class="post-thumb"
+                 src="{{ (post.image | default: '/images/cover.jpeg') | relative_url }}"
+                 alt="{{ post.title }}">
         </a>
         <div class="post-body">
-            <h2 class="post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-            <p class="post-excerpt">{{ post.content | strip_html | truncate: 160 }}</p>
+            <h2 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h2>
+            <p class="post-excerpt">
+                {{ post.excerpt | default: post.content | strip_html | truncate: 160 }}
+            </p>
             <a class="post-readmore" href="{{ post.url | relative_url }}">Read more →</a>
         </div>
     </article>
