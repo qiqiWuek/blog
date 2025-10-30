@@ -68,13 +68,6 @@ hr{ border:0; border-top:1px solid var(--border); margin:2rem 0; }
 .post-hero{ width:100%; display:block; margin:0 0 1.2rem; object-fit:cover; }
 .post img{ max-width:100%; height:auto; display:block; }
 
-/* 评论区容器（giscus/utterances） */
-.comments-wrap{
-  margin-top: 2.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-}
-
 /* ===== 标题与卡片列表的间距优化 ===== */
 h2{ margin: 1.2rem 0 .85rem; }
 h2 + .post-cards{ margin-top: .75rem; }  /* 压掉“奇怪空隙” */
