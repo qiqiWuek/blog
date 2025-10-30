@@ -1,11 +1,6 @@
 ---
 layout: home
 title: "QiqiWuek’s Reading Notes"
-classes: wide
-header:
-  overlay_image: "{{ site.baseurl }}/images/cover.jpeg"  
-  overlay_filter: 0.3
-  caption: "📚 Reading & Writing"
 ---
 
 # 📚 QiqiWuek’s Reading Notes

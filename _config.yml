@@ -2,19 +2,12 @@ remote_theme: LeNPaul/Lagrange
 
 title: "QiqiWuek’s Reading Notes"
 description: "Reading & Writing"
-lang: zh-CN
 url: "https://qiqiwuek.github.io"
 baseurl: "/read_notes"
 
-author:
-  name: "QiqiWuek"
-  bio: "Notes in English & Chinese. Reading, writing, and reflections."
-  avatar: "/images/carter.jpg"      # ✅ 头像
-background: "/images/cover.jpeg"  # ✅ 背景封面
-
-theme_color: "#E9E9E9"
-highlight_color: "#7FB77E"
-show_excerpts: true
+author: "QiqiWuek"
+avatar: "/images/carter.jpg"
+background: "/images/cover.jpeg"
 
 navigation:
   - title: Home
