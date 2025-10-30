@@ -1,9 +1,10 @@
 /*post cards style*/
 .post-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自动两列 */
+  gap: 24px;
   margin-top: 2em;
+  justify-items: center; /* 居中对齐卡片 */
 }
 .post-card {
   display: flex;
