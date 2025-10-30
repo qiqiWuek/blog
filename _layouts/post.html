@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title }} · {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/layout.css' | relative_url }}">
+</head>
+<body>
+<!-- 顶部导航：站点名 + About -->
+<nav class="top-nav">
+    <div class="wrap nav-inner">
+        <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        <div class="nav-links">
+            <a href="{{ '/about/' | relative_url }}">About</a>
+        </div>
+    </div>
+</nav>
+
+<main class="wrap post">
+    <!-- 面包屑：🥐 返回首页 -->
+    <nav class="crumbs">
+        <a href="{{ '/' | relative_url }}">🥐 Back to Home</a>
+    </nav>
+
+    <h1 class="post-h1">{{ page.title }}</h1>
+    {% if page.date %}<p class="post-meta">{{ page.date | date: "%b %d, %Y" }}</p>{% endif %}
+
+    <!-- 封面图（仅当提供 image 时才渲染，避免空 <img>） -->
+    {% if page.image %}
+    <img class="post-hero" src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    {% endif %}
+
+    <article class="post-body">
+        {{ content }}
+    </article>
+
+    {% include comments.html %}
+</main>
+
+<footer class="site-footer">
+    <div class="wrap footer-inner">
+        <p>© {{ "now" | date: "%Y" }} {{ site.author | default: site.title }} · Built with Jekyll</p>
+        <p>
+            <a href="{{ '/' | relative_url }}">Home</a> ·
+            <a href="{{ '/about/' | relative_url }}">About</a> ·
+            <a href="https://github.com/{{ site.github_username | default: 'qiqiwuek' }}" target="_blank" rel="noopener">GitHub</a>
+        </p>
+    </div>
+</footer>
+</body>
+</html>

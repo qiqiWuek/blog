@@ -7,15 +7,8 @@
             {% endif %}
         </a>
         <div class="post-body">
-            <h2 class="post-title">
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            </h2>
-
-            <!-- 用正文而不是 front matter 的 excerpt 字段 -->
-            <p class="post-excerpt">
-                {{ post.content | strip_html | truncate: 160 }}
-            </p>
-
+            <h2 class="post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            <p class="post-excerpt">{{ post.content | strip_html | truncate: 160 }}</p>
             <a class="post-readmore" href="{{ post.url | relative_url }}">Read more →</a>
         </div>
     </article>

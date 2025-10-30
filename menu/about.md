@@ -4,4 +4,5 @@ title: "About"
 permalink: /about/
 ---
 
-一些关于本站与我的介绍。
+Hi, I'm **Wuke**.  
+This is my rabbit hole for reading & writing.
