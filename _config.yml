@@ -7,7 +7,7 @@ baseurl: "/blog"
 
 author: "QiqiWuek"
 avatar: "/images/carter.jpg"
-background: "/images/2023.jpeg"
+background: "/images/cover_2023.jpeg"
 
 plugins:
   - jekyll-remote-theme

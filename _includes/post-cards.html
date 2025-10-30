@@ -3,6 +3,8 @@
     <a class="post-card" href="{{ post.url | relative_url }}">
         {% if post.image %}
         <img class="post-thumb" src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+        {% else %}
+        <img class="post-thumb" alt="{{ post.title }}">
         {% endif %}
         <div class="post-body">
             <h2 class="post-title">{{ post.title }}</h2>
