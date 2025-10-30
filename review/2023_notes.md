@@ -1,11 +1,18 @@
 ---
-layout: default
-title: 2023 notes
+layout: single
+title: "Notes 2023"
+permalink: /review/2023_notes/     # ✅ 推荐去掉 .html，更干净，也能自动生成目录页
+toc: true
+toc_sticky: true
+classes: wide
+author_profile: true               # ✅ 让右侧出现头像与简介（如果你在 _config.yml 里配置了 author）
 ---
-# 2023 notes
 
-[home](../README.md)
+# Notes 2023
 
+[🏠 Home]({{ site.baseurl }}/)    # ✅ 改成 Jekyll 相对路径，点回首页
+
+---
 
 #### 1. 跳岛某期 笛安
 > 我以前一直以比自己生理年龄更小的角度在写作，现在我认为我是她曾经观察过的复杂世界的一部分。

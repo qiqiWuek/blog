@@ -1,10 +1,18 @@
 ---
-layout: default
-title: Before 2023
+layout: single
+title: "Before 2023"
+permalink: /review/Before_2023/     # ✅ 推荐去掉 .html，更干净，也能自动生成目录页
+toc: true
+toc_sticky: true
+classes: wide
+author_profile: true               # ✅ 让右侧出现头像与简介（如果你在 _config.yml 里配置了 author）
 ---
+
 # Before 2023
 
-[home](../README.md)
+[🏠 Home]({{ site.baseurl }}/)    # ✅ 改成 Jekyll 相对路径，点回首页
+
+---
 
 #### 1. 日本美學 3: 侘寂
 > “ 荣格认为艺术创作过程中充满集体意识的作用。创作不是个人的自由‘他想象他在游泳，却看不见是暗流将他卷走’，这股暗流就是集体潜意识。不是歌德创作了《浮士德》而是相反。透过艺术创作，艺术家重新唤起了埋在人类潜意识中的原型。” 

@@ -1,10 +1,18 @@
 ---
-layout: default
-title: 2024 notes
+layout: single
+title: "Notes 2024"
+permalink: /review/2024_notes/     # ✅ 推荐去掉 .html，更干净，也能自动生成目录页
+toc: true
+toc_sticky: true
+classes: wide
+author_profile: true               # ✅ 让右侧出现头像与简介（如果你在 _config.yml 里配置了 author）
 ---
-# 2024 notes
 
-[home](../README.md)
+# Notes 2024
+
+[🏠 Home]({{ site.baseurl }}/)    # ✅ 改成 Jekyll 相对路径，点回首页
+
+---
 
 #### 1. 骚潮 三岛由纪夫 Jan 14 
 > 初江笑了，搖了搖她的頭髮。從她的頭發上灑下了一片透明的綠色海藻，落在耀目的沙灘上。
