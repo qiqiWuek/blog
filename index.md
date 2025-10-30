@@ -3,12 +3,10 @@ layout: page
 title: "📚📚📚Review & Stories"
 permalink: /
 ---
-
+## Intro
 👋 Welcome!  
 This website is always a work in progress.  
 I record my reviews and stories in both English and Chinese.
-
----
 
 ## 📖 Review Posts
 
