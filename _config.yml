@@ -1,6 +1,6 @@
 remote_theme: LeNPaul/Lagrange
 
-title: "QiqiWuek’s Reading Notes"
+title: "QiqiWuek’s Blog"
 description: "Reading & Writing"
 url: "https://qiqiwuek.github.io"
 baseurl: "/read_notes"
@@ -15,3 +15,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-feed
   - jekyll-sitemap
+
+
+
+ # 怎么显示 图片 ？  还有什么意见？ post 页面怎么做？

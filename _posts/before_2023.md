@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Before 2023"
-permalink: /review/before_2023/
+permalink: /_posts/before_2023/
 ---
 
 [🏠 Home]({{ '/' | relative_url }})

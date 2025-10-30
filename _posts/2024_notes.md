@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "2024 Notes"
-permalink: /review/2024_notes/
+permalink: /_posts/2024_notes/
 ---
 
 [🏠 Home]({{ '/' | relative_url }})
