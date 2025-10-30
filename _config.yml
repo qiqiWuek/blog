@@ -19,6 +19,10 @@ plugins:
 paginate: 6                 # 首页每页 6 篇
 paginate_path: "/page:num"  # 翻页路径 /blog/page2 ...
 
+markdown: kramdown
+kramdown:
+  parse_block_html: true
+
 
 
  # 怎么显示 图片 ？  还有什么意见？ post 页面怎么做？
