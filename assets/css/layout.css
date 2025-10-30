@@ -1,11 +1,11 @@
 :root {
-  --bg: #f5f6f7;            /* 页背景 */
-  --fg: #222;               /* 主文字 */
-  --muted: #666;            /* 次要文字 */
-  --border: #e6e6e6;        /* 边框色 */
-  --link: #3b82f6;          /* 链接色（接近 Lagrange） */
-  --radius: 12px;
-  --content-width: 980px;   /* 中栏宽度 */
+  --bg: #f8f9fa;
+  --fg: #222;
+  --muted: #555;
+  --border: #e5e5e5;
+  --link: #007acc;
+  --radius: 10px;
+  --content-width: 720px;
 }
 
 * { box-sizing: border-box; }
@@ -22,15 +22,13 @@ html, body {
 .wrap {
   max-width: var(--content-width);
   margin: 3rem auto;
-  padding: 0 1.25rem;
+  padding: 0 1rem;
 }
 
 h1, h2, h3 {
-  margin: 2rem 0 1rem;
+  margin-top: 2rem;
   line-height: 1.25;
 }
-
-h1, h2, p { text-align: center; }  /* 顶部欢迎语 & 小标题居中 */
 
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
