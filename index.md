@@ -10,7 +10,7 @@ a perpetual work always in progress.
 ## 📖 Reviews
 
 <div class="post-cards" markdown="0">
-  {% include post-cards.html %}
+  {% include post-cards.html limit=3 %}
 </div>
 
 ## ✍️ Stories

@@ -1,5 +1,8 @@
+{% assign items   = include.posts | default: site.posts | sort: "date" | reverse %}
+{% assign howmany = include.limit | default: 6 %}
+
 <div class="post-cards">
-    {% for post in posts_desc limit:2 %}
+    {% for post in items limit: howmany %}
     <article class="post-card">
         <a class="post-thumb-link" href="{{ post.url | relative_url }}">
             <img class="post-thumb"

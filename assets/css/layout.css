@@ -20,9 +20,7 @@ p{ margin:0 0 1rem; }
 a{ color:var(--link); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
-/* ===== 顶部标题置灰，不可点 ===== */
-.site-title span{ color:#7a7a7a; text-decoration:none; cursor:default; }
-.site-desc{ color:#666; margin-top:.3rem; text-align:center; }
+
 
 /* ===== 全屏横幅 Welcome ===== */
 .home-hero{
@@ -152,17 +150,6 @@ a:hover{ text-decoration:underline; }
 }
 .post-h1{ margin: .6rem 0 .25rem; }
 .post-meta{ margin: 0 0 1rem; color: #666; }
-
-/* 面包屑里的“Back to Home”变成灰色 */
-.crumbs{ margin: 1rem 0 1.25rem; }
-.crumbs .home-link{
-  color: #6b7280;               /* 灰色 */
-  text-decoration: none;
-}
-.crumbs .home-link:hover{
-  color: #4b5563;
-  text-decoration: underline;
-}
 
 /* 文章正文保持居中（由 .wrap 控制宽度），可选再收紧一点 */
 .post{ max-width: 860px; margin: 0 auto; }
