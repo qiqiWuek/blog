@@ -17,25 +17,34 @@
     </div>
 </nav>
 
+{% if page.image %}
+<!-- 有封面：图片半透明 + 口号 -->
+<section class="hero-banner" style="background-image:url('{{ page.image | relative_url }}')">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+        <h1 class="hero-title">{{ page.title }}</h1>
+        <p class="hero-sub">Dive into the rabbit hole.</p>
+        {% if page.date %}<p class="hero-date">{{ page.date | date: "%b %d, %Y" }}</p>{% endif %}
+    </div>
+</section>
+{% else %}
+<!-- 无封面：简洁标题区 -->
+<section class="hero-plain wrap">
+    <h1 class="post-h1">{{ page.title }}</h1>
+    {% if page.date %}<p class="post-meta">{{ page.date | date: "%b %d, %Y" }}</p>{% endif %}
+</section>
+{% endif %}
+
 <main class="wrap post">
-    <!-- 面包屑：🥐 返回首页 -->
+    <!-- 面包屑 -->
     <nav class="crumbs">
         <a href="{{ '/' | relative_url }}">🥐 Back to Home</a>
     </nav>
 
-    <h1 class="post-h1">{{ page.title }}</h1>
-    {% if page.date %}<p class="post-meta">{{ page.date | date: "%b %d, %Y" }}</p>{% endif %}
-
-    <!-- 封面图（仅当提供 image 时才渲染，避免空 <img>） -->
-    {% if page.image %}
-    <img class="post-hero" src="{{ page.image | relative_url }}" alt="{{ page.title }}">
-    {% endif %}
-
+    <!-- 正文 -->
     <article class="post-body">
         {{ content }}
     </article>
-
-
 </main>
 
 <footer class="site-footer">
