@@ -1,16 +1,23 @@
 <div class="post-cards">
     {% for post in site.posts %}
-    <a class="post-card" href="{{ post.url | relative_url }}">
-        {% if post.image %}
-        <img class="post-thumb" src="{{ post.image | relative_url }}" alt="{{ post.title }}">
-        {% endif %}
-        <div class="post-body">
-            <h2 class="post-title">{{ post.title }}</h2>
-            {% if post.excerpt %}
-            <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+    <article class="post-card">
+        <a class="post-thumb-link" href="{{ post.url | relative_url }}">
+            {% if post.image %}
+            <img class="post-thumb" src="{{ post.image | relative_url }}" alt="{{ post.title }}">
             {% endif %}
-            <span class="post-readmore">Read more →</span>
+        </a>
+        <div class="post-body">
+            <h2 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h2>
+
+            <!-- 用正文而不是 front matter 的 excerpt 字段 -->
+            <p class="post-excerpt">
+                {{ post.content | strip_html | truncate: 160 }}
+            </p>
+
+            <a class="post-readmore" href="{{ post.url | relative_url }}">Read more →</a>
         </div>
-    </a>
+    </article>
     {% endfor %}
 </div>

@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ page.title }}</title>
+    <title>{{ page.title | default: site.title }}</title>
 
     <link rel="stylesheet" href="{{ '/assets/css/layout.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/post-cards.css' | relative_url }}">
 </head>
 <body>
 <main class="wrap">
+
+    <!-- 站点抬头：显示 _config.yml 里的 title/description -->
+    <header class="site-header">
+        <h1 class="site-title">
+            <a href="{{ site.baseurl | default: '/' | relative_url }}">{{ site.title }}</a>
+        </h1>
+        <p class="site-desc">{{ site.description }}</p>
+    </header>
+
     {{ content }}
 </main>
 </body>

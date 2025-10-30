@@ -1,61 +1,78 @@
-.post-cards {
+/* ===== Post list (one per row, Lagrange-like) ===== */
+
+/* 列表容器：一列纵向排列 */
+.post-cards{
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  margin-top: 2.5rem;
+  gap: 40px;                 /* 卡片之间的垂直间距 */
+  margin-top: 2rem;
 }
 
-.post-card {
-  display: block;
-  background: #fff;
-  border: 1px solid var(--border);
+/* 单个卡片 */
+.post-card{
+  background:#fff;
+  border:1px solid var(--border);
   border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow:hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,.05);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
-
-.post-card:hover {
+.post-card:hover{
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  border-color:#ddd;
 }
 
-/* 图片 */
-.post-thumb {
-  width: 100%;
-  aspect-ratio: 16 / 9;
+/* 封面图区域：整块可点 */
+.post-thumb-link{ display:block; }
+
+/* 封面图：去掉奇怪空隙的关键是 display:block + vertical-align */
+.post-thumb{
+  width:100%;
+  aspect-ratio: 16/9;        /* 保持 16:9；不支持的浏览器会忽略 */
   object-fit: cover;
-  background: #f0f0f0;
-  display: block;
+  background:#f0f0f0;
+  display:block;             /* 关键1：让图片变块级，避免被包进 baseline */
+}
+.post-card img{ vertical-align: middle; } /* 关键2：彻底消除基线缝隙 */
+
+/* 文本区 */
+.post-body{
+  padding: 1.1rem 1.4rem 1.4rem;
+  text-align: left;          /* 左对齐，更像 Lagrange */
 }
 
-/* 文字内容 */
-.post-body {
-  padding: 1.2rem 1.5rem 1.5rem;
-  text-align: left;
+/* 标题 */
+.post-title{
+  margin:0 0 .5rem;
+  font-size:1.35rem;
+  font-weight:700;
+  color:var(--fg);
 }
+.post-title a{ color:inherit; text-decoration:none; }
+.post-title a:hover{ text-decoration:underline; }
 
-.post-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin: 0 0 0.5rem;
-  color: var(--fg);
-}
-
-.post-excerpt {
+/* 摘要：来自正文（include 中用 post.content 生成） */
+.post-excerpt{
+  margin:0 0 .9rem;
   color: var(--muted);
-  margin: 0 0 0.8rem;
-  font-size: 1rem;
+  font-size:1rem;
 }
 
-/* “Read more” 链接 */
-.post-readmore {
-  font-size: 0.95rem;
-  color: var(--link);
-  text-decoration: none;
-  font-weight: 500;
+/* “Read more” 灰色按钮样式 */
+.post-readmore{
+  color:#9aa0a6;          /* 灰色 */
+  text-decoration:none;
+  font-weight:500;
+}
+.post-readmore:hover{
+  color:#6b7280;
+  text-decoration:underline;
 }
 
-.post-readmore:hover {
-  text-decoration: underline;
+/* 小屏微调：收紧间距、圆角不变 */
+@media (max-width: 520px){
+  .post-cards{ gap:28px; }
+  .post-body{ padding: 1rem 1.1rem 1.2rem; }
+  .post-title{ font-size:1.22rem; }
 }
