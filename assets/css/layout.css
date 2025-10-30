@@ -72,3 +72,34 @@ h2 + .post-cards{ margin-top:.75rem; }
   .hero-banner{ height:220px; }
   .hero-title{ font-size:1.55rem; }
 }
+/* 顶部站点标题置灰且不可点 */
+.site-title span{
+  color:#7a7a7a;
+  text-decoration:none;
+  cursor:default;
+}
+
+/* ===== Home hero (welcome on image) ===== */
+.home-hero{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/7;                    /* 可调高：更高的 banner */
+  border-radius:14px;
+  overflow:hidden;
+  margin: 0 0 24px;
+  background:center/cover no-repeat #eee;
+}
+.home-hero__overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.45));
+  transition:opacity .2s ease;
+}
+.home-hero:hover .home-hero__overlay{ opacity:.6; }
+.home-hero__text{
+  position:absolute; inset:0;
+  display:grid; place-items:center;
+  text-align:center; color:#fff;
+  padding:0 24px;
+}
+.home-hero__text h2{ margin:0 0 8px; font-size:clamp(28px,4vw,42px); line-height:1.15; }
+.home-hero__text p{ margin:0; font-size:clamp(14px,2vw,18px); opacity:.95; }

@@ -13,11 +13,20 @@
 
     <!-- 站点抬头：显示 _config.yml 里的 title/description -->
     <header class="site-header">
-        <h1 class="site-title">
-            <a href="{{ site.baseurl | default: '/' | relative_url }}">{{ site.title }}</a>
-        </h1>
+        <h1 class="site-title"><span>{{ site.title }}</span></h1>
         <p class="site-desc">{{ site.description }}</p>
     </header>
+
+     {% if page.url == '/' %}
+     <!-- 首页 Hero：欢迎语覆盖背景图 -->
+    <section class="home-hero" style="background-image:url('{{ '/images/home2.jpg' | relative_url }}')">
+        <div class="home-hero__overlay"></div>
+        <div class="home-hero__text">
+            <h2>Welcome</h2>
+            <p>Notes in English & Chinese · Reading & Writing</p>
+        </div>
+        </section>
+        {% endif %}
 
     {{ content }}
 </main>

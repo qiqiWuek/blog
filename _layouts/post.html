@@ -7,15 +7,6 @@
     <link rel="stylesheet" href="{{ '/assets/css/layout.css' | relative_url }}">
 </head>
 <body>
-<!-- 顶部导航：站点名 + About -->
-<nav class="top-nav">
-    <div class="wrap nav-inner">
-        <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-        <div class="nav-links">
-            <a href="{{ '/about/' | relative_url }}">About</a>
-        </div>
-    </div>
-</nav>
 
 {% if page.image %}
 <!-- 有封面：图片半透明 + 口号 -->
@@ -50,11 +41,6 @@
 <footer class="site-footer">
     <div class="wrap footer-inner">
         <p>© {{ "now" | date: "%Y" }} {{ site.author | default: site.title }} · Built with Jekyll</p>
-        <p>
-            <a href="{{ '/' | relative_url }}">Home</a> ·
-            <a href="{{ '/about/' | relative_url }}">About</a> ·
-            <a href="https://github.com/{{ site.github_username | default: 'qiqiwuek' }}" target="_blank" rel="noopener">GitHub</a>
-        </p>
     </div>
 </footer>
 </body>
