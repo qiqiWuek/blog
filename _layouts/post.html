@@ -8,6 +8,8 @@
 </head>
 <body>
 
+{% include top-nav.html %}
+
 {% if page.image %}
 <!-- 顶部全屏横幅（更高、更暗、透明 60%） -->
 <section class="hero-banner" style="background-image:url('{{ page.image | relative_url }}')">
@@ -25,9 +27,6 @@
     {% if page.date %}<p class="post-meta">{{ page.date | date: "%b %d, %Y" }}</p>{% endif %}
 </section>
 {% endif %}
-
-{% include top-nav.html %}
-
 
 <main class="wrap post center">
 

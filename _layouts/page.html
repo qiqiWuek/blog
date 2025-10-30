@@ -10,6 +10,7 @@
 </head>
 <body>
 
+{% include top-nav.html %}
 <!-- 首页横幅：铺满整个屏幕宽度 -->
 {% if page.url == '/' %}
 <section class="home-hero" style="background-image:url('{{ '/images/home2.jpg' | relative_url }}')">
@@ -20,8 +21,6 @@
     </div>
 </section>
 {% endif %}
-
-{% include top-nav.html %}
 
 <main class="wrap wide">
     {{ content }}

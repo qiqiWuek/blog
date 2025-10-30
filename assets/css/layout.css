@@ -190,30 +190,44 @@ a:hover{ text-decoration:underline; }
 .page-archive li { margin: .3rem 0; }
 
 
-/* ===== 顶部导航栏 ===== */
-.top-nav {
-  background:#ffffffcc;
-  backdrop-filter: blur(6px);
-  border-bottom:1px solid var(--border);
-  font-size: 0.98rem;
+/* ===== 顶部固定导航栏（灰色版本） ===== */
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.7); /* 半透明背景 */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 999; /* 保证在横幅上方 */
 }
+
 .nav-inner {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
 }
+
 .brand {
-  font-weight:600;
-  color:#333;
-  text-decoration:none;
+  font-weight: 600;
+  color: #555; /* 灰色文字 */
+  text-decoration: none;
 }
+
 .nav-links a {
-  color:#333;
-  text-decoration:none;
-  margin-left:1rem;
+  color: #555; /* 灰色文字 */
+  text-decoration: none;
+  margin-left: 1rem;
 }
+
 .nav-links a:hover,
 .brand:hover {
-  text-decoration:underline;
+  text-decoration: underline;
+  color: #222; /* hover 变深一点 */
+}
+
+/* 防止内容被固定导航遮住 */
+body {
+  padding-top: 3.2rem; /* 根据导航高度调整 */
 }
