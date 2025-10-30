@@ -10,24 +10,23 @@
 </head>
 <body>
 
+<!-- 首页横幅：铺满整个屏幕宽度 -->
+{% if page.url == '/' %}
+<section class="home-hero" style="background-image:url('{{ '/images/home2.jpg' | relative_url }}')">
+    <div class="home-hero__overlay"></div>
+    <div class="home-hero__text">
+        <h1>Welcome ☕️</h1>
+        <p>Notes in English & Chinese · Reading & Writing</p>
+    </div>
+</section>
+{% endif %}
+
 <main class="wrap wide">
-    <!-- 顶部站点抬头（标题置灰且不可点） -->
+    <!-- 顶部站点抬头 -->
     <header class="site-header">
         <h1 class="site-title"><span>{{ site.title }}</span></h1>
         <p class="site-desc">{{ site.description }}</p>
     </header>
-
-    {% if page.url == '/' %}
-    <!-- 首页横幅：满屏铺开 -->
-    <section class="home-hero edge"
-             style="background-image:url('{{ '/images/home2.jpg' | relative_url }}')">
-        <div class="home-hero__overlay"></div>
-        <div class="home-hero__text">
-            <h2>Welcome ☕️</h2>
-            <p>Notes in English & Chinese · Reading & Writing</p>
-        </div>
-    </section>
-    {% endif %}
 
     {{ content }}
 </main>
