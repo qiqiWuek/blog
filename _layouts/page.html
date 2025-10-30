@@ -16,13 +16,17 @@
     <div class="home-hero__overlay"></div>
     <div class="home-hero__text">
         <h1>Wuke’s rabbit hole ☕️</h1>
-        <p>散散漫漫的树洞</p>
+        <p>散漫树洞</p>
     </div>
 </section>
 {% endif %}
 
 <main class="wrap wide">
     {{ content }}
+
+    {% if page.comments == true %}
+        {% include giscus.html %}
+    {% endif %}
 </main>
 
 </body>

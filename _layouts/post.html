@@ -33,6 +33,10 @@
 
     <article class="post-body">
         {{ content }}
+
+        {% if page.comments == true %}
+            {% include giscus.html %}
+        {% endif %}
     </article>
 </main>
 
