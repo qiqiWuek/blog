@@ -181,3 +181,18 @@ a:hover{ text-decoration:underline; }
 .post-body blockquote p {
   margin: 0.3em 0;
 }
+
+.comments h2 {
+  text-align: center;      /* ✅ 水平居中 */
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.comments {
+  margin-top: 3rem;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 1.5rem;
+  text-align: center;      /* 整体居中 */
+}
