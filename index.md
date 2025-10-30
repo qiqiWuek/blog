@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "📚 QiqiWuek’s Blog"
+title: "📚📚📚Review & Stories"
 permalink: /
 ---
 
@@ -10,12 +10,11 @@ I record my reviews and stories in both English and Chinese.
 
 ---
 
-# 📖 Review Posts
-<!-- 引入卡片样式 -->
-<link rel="stylesheet" href="{{ '/assets/css/post-cards.css' | relative_url }}">
+## 📖 Review Posts
 
-<!-- 引入卡片模板 -->
-{% include post-cards.html %}
+<div class="post-cards" markdown="0">
+  {% include post-cards.html %}
+</div>
 
-# ✍️ Stories
+## ✍️ Stories
 Coming soon...
