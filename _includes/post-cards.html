@@ -1,5 +1,5 @@
 <div class="post-cards">
-    {% for post in site.posts %}
+    {% for post in posts_desc limit:2 %}
     <article class="post-card">
         <a class="post-thumb-link" href="{{ post.url | relative_url }}">
             <img class="post-thumb"
