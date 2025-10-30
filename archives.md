@@ -5,7 +5,7 @@ permalink: /archive/
 classes: page-archive
 ---
 
-# 🗂 Archive
+# 🌲All Posts.....
 
 {% assign groups = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
 {% assign groups = groups | sort: "name" | reverse %}
