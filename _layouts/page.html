@@ -7,14 +7,13 @@
 
     <link rel="stylesheet" href="{{ '/assets/css/layout.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/post-cards.css' | relative_url }}">
+    {% if page.classes and page.classes contains 'page-archive' %}
+    <link rel="stylesheet" href="{{ '/assets/css/archive.css' | relative_url }}">
+    {% endif %}
 </head>
 <body>
-
 {% include top-nav.html %}
 
-{%- comment -%}
-Home hero section – only visible on the index page (/)
-{%- endcomment -%}
 {% if page.url == '/' %}
 <section class="home-hero" style="background-image:url('{{ '/images/home6.jpg' | relative_url }}')">
     <div class="home-hero__overlay"></div>
@@ -25,9 +24,6 @@ Home hero section – only visible on the index page (/)
 </section>
 {% endif %}
 
-{%- comment -%}
-Generic hero section – shown on any non-home page that provides "image:" in the front matter
-{%- endcomment -%}
 {% if page.url != '/' and page.image %}
 <section class="hero-banner" style="background-image:url('{{ page.image | relative_url }}')">
     <div class="home-hero__overlay"></div>
@@ -40,8 +36,6 @@ Generic hero section – shown on any non-home page that provides "image:" in th
 
 <main class="wrap {% if page.classes %}{{ page.classes }}{% else %}wide{% endif %}">
     {{ content }}
-
 </main>
-
 </body>
 </html>

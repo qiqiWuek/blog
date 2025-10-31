@@ -1,0 +1,130 @@
+<!-- _includes/archive-sections.html -->
+<nav class="archive-tabs">
+    <a href="#year" id="tab-year">by Year</a>
+    <a href="#tag"  id="tab-tag">by Tag</a>
+    <a href="#type" id="tab-type">by Type</a>
+</nav>
+
+<!-- By Year -->
+<section id="year" class="archive-section">
+    <h2 class="visually-hidden">By Year</h2>
+    {% assign groups = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+    {% assign groups = groups | sort: "name" | reverse %}
+
+    {% for year in groups %}
+    <h3 class="tl-year">{{ year.name }}</h3>
+    <ol class="timeline">
+        {% assign posts_in_year = year.items | sort: "date" | reverse %}
+        {% for post in posts_in_year %}
+        <li class="tl-item">
+            <div class="tl-date">
+                <span class="d">{{ post.date | date: "%d" }}</span>
+                <span class="m">/ {{ post.date | date: "%b" }}</span>
+            </div>
+            <a class="tl-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% if post.tags and post.tags.size > 0 %}
+            <span class="muted"> · #{{ post.tags | join: ", #" }}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+    {% endfor %}
+</section>
+
+<!-- By Tag -->
+<section id="tag" class="archive-section">
+    <h2 class="visually-hidden">By Tag</h2>
+    {% assign all_tags = site.tags | sort %}
+    {% for tag in all_tags %}
+    {% assign tag_name = tag[0] %}
+    {% assign tag_posts = tag[1] | sort: "date" | reverse %}
+    <h3 id="tag-{{ tag_name | slugify }}" class="tl-year">#{{ tag_name }}</h3>
+    <ol class="timeline">
+        {% for post in tag_posts %}
+        <li class="tl-item">
+            <div class="tl-date">
+                <span class="d">{{ post.date | date: "%d" }}</span>
+                <span class="m">/ {{ post.date | date: "%b" }}</span>
+            </div>
+            <a class="tl-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+    </ol>
+    {% endfor %}
+</section>
+
+<!-- By Type -->
+<section id="type" class="archive-section">
+    <h2 class="visually-hidden">By Type</h2>
+
+    {%- comment -%}
+    兼容两种写法：
+    1) 单值：category: story / review
+    2) 数组：categories: [story, review]
+    {%- endcomment -%}
+    {% assign stories = site.posts | where: "category", "story" %}
+    {% if stories.size == 0 %}
+    {% assign stories = site.posts | where_exp: "post", "post.categories contains 'story'" %}
+    {% endif %}
+
+    {% assign reviews = site.posts | where: "category", "review" %}
+    {% if reviews.size == 0 %}
+    {% assign reviews = site.posts | where_exp: "post", "post.categories contains 'review'" %}
+    {% endif %}
+
+    {% assign stories = stories | sort: "date" | reverse %}
+    {% assign reviews = reviews | sort: "date" | reverse %}
+
+    <h3 class="tl-year">Stories</h3>
+    <ol class="timeline">
+        {% for post in stories %}
+        <li class="tl-item">
+            <div class="tl-date">
+                <span class="d">{{ post.date | date: "%d" }}</span>
+                <span class="m">/ {{ post.date | date: "%b" }}</span>
+            </div>
+            <a class="tl-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% if post.tags and post.tags.size > 0 %}
+            <span class="muted"> · #{{ post.tags | join: ", #" }}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+
+    <h3 class="tl-year">Reviews</h3>
+    <ol class="timeline">
+        {% for post in reviews %}
+        <li class="tl-item">
+            <div class="tl-date">
+                <span class="d">{{ post.date | date: "%d" }}</span>
+                <span class="m">/ {{ post.date | date: "%b" }}</span>
+            </div>
+            <a class="tl-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% if post.tags and post.tags.size > 0 %}
+            <span class="muted"> · #{{ post.tags | join: ", #" }}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+</section>
+
+<script>
+  (function () {
+    const ids = ["year","tag","type"];
+    const secs = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
+    const tabs = Object.fromEntries(ids.map(id => [id, document.getElementById("tab-"+id)]));
+
+    function activate(which){
+      ids.forEach(id=>{
+        secs[id].classList.toggle("active", id===which);
+        tabs[id].classList.toggle("active", id===which);
+      });
+    }
+    function current(){
+      const h = (location.hash || "#year").replace("#","");
+      return ids.includes(h) ? h : "year";
+    }
+    window.addEventListener("hashchange", ()=>activate(current()));
+    activate(current());
+  })();
+</script>
