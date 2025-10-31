@@ -17,7 +17,7 @@
     const a = document.createElement('a');
     a.href = '#' + h.id;
     a.textContent = h.textContent;
-    const lv = h.tagName === 'H4' || h.tagName === 'H5' || h.tagName === 'H6' ? 'lv2' : 'lv1';
+    const lv = (h.tagName === 'H4' || h.tagName === 'H5' || h.tagName === 'H6') ? 'lv2' : 'lv1';
     a.className = 'toc-item ' + lv;
     list.appendChild(a);
   });
@@ -39,11 +39,30 @@
     }
   });
 
-  // 4) 折叠/展开
+  // 4) 折叠/展开（默认：收起成小圆）
   const toggle = bubble.querySelector('.toc-toggle');
-  if (toggle) toggle.addEventListener('click', () => bubble.classList.toggle('open'));
-  // 默认展开：如需默认折叠，删掉下面这行即可
-  bubble.classList.add('open');
+  function setOpen(open){
+    bubble.classList.toggle('open',      open);
+    bubble.classList.toggle('collapsed', !open);
+    if (toggle) toggle.setAttribute('aria-expanded', String(open));
+    // 展开时动态计算列表最大高度，保证能滚到底
+    if (open) {
+      const bcr = bubble.getBoundingClientRect();
+      list.style.maxHeight = Math.max(120, window.innerHeight - bcr.top - 16) + 'px';
+      list.style.overflow = 'auto';
+      list.style.webkitOverflowScrolling = 'touch';
+    }
+  }
+  setOpen(false); // 初始为小圆点
+  if (toggle) toggle.addEventListener('click', () => setOpen(!bubble.classList.contains('open')));
+
+  // 点击外部或按 ESC 收起
+  document.addEventListener('click', (e)=>{
+    if (!bubble.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape') setOpen(false);
+  });
 
   // 5) 滚动高亮
   const obs = new IntersectionObserver(entries => {
@@ -57,34 +76,24 @@
   }, { rootMargin: '0px 0px -70% 0px', threshold: [0, 1] });
   headings.forEach(h => obs.observe(h));
 
-  // === 6) 定位到横幅/无图标题下沿，并给目录列表设置“可滚高度” ===
-    function placeTOC() {
-      const hero = document.querySelector('.hero-banner') || document.querySelector('.hero-plain');
-      let top = 90;
-      if (hero) top = hero.getBoundingClientRect().bottom + 12;  // 横幅底沿 + 12px
-      bubble.style.top  = Math.max(12, Math.round(top)) + 'px';
-      bubble.style.left = '12px';                                 // 页面左沿 12px
+  // 6) 放到横幅底沿 + 页面左沿；并在展开/收起/窗口变化时重算
+  function placeTOC() {
+    const hero = document.querySelector('.hero-banner') || document.querySelector('.hero-plain');
+    let top = 90;
+    if (hero) top = hero.getBoundingClientRect().bottom + 12;
+    bubble.style.top  = Math.max(12, Math.round(top)) + 'px';
+    bubble.style.left = '12px';
 
-      // —— 新增：动态列表高度，保证能滚到最后一项
-      // 先确保列表本身可滚
-      list.style.overflow = 'auto';
-      list.style.webkitOverflowScrolling = 'touch';
-      // 计算从气泡顶部到视口底部的空间
-      const bcr   = bubble.getBoundingClientRect();
-      const space = window.innerHeight - bcr.top - 16;            // 留 16px 底部间距
-      const maxH  = Math.max(120, space);                         // 至少给 120px
-      list.style.maxHeight = maxH + 'px';
+    // 若当前是展开态，同步刷新列表高度
+    if (bubble.classList.contains('open')) {
+      const bcr = bubble.getBoundingClientRect();
+      list.style.maxHeight = Math.max(120, window.innerHeight - bcr.top - 16) + 'px';
     }
-
-    // 初次 + 变化时重算（rAF 轻微节流）
-    const raf = cb => (window.requestAnimationFrame ? requestAnimationFrame(cb) : cb());
-    const recalc = () => raf(placeTOC);
-
-    window.addEventListener('load',   recalc);
-    window.addEventListener('resize', recalc);
-    window.addEventListener('scroll', () => { if (window.scrollY < 240) recalc(); });
-
-    // 图片/字体晚加载兜底
-    setTimeout(recalc, 300);
-    setTimeout(recalc, 1000);
+  }
+  const raf = cb => window.requestAnimationFrame ? requestAnimationFrame(cb) : cb();
+  const recalc = () => raf(placeTOC);
+  window.addEventListener('load',   recalc);
+  window.addEventListener('resize', recalc);
+  window.addEventListener('scroll', () => { if (window.scrollY < 240) recalc(); });
+  setTimeout(recalc, 300);
 })();

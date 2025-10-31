@@ -237,53 +237,52 @@ a:hover{ text-decoration:underline; }
 
 /* === Floating TOC bubble – final === */
 
-/* 外层只负责定位与外观；不产生滚动条 */
+/* --- TOC：展开态（与你现有保持一致，可微调宽度） --- */
 .toc-bubble{
   position: fixed;
-  z-index: 10050;                 /* 再加一点，避免被别的层盖住 */
-  top: 90px;                      /* JS 会改为横幅底部 + 12px */
-  left: 12px;                     /* JS 会改成你要的页面左沿距离 */
-  width: 250px;                   /* 需要更窄/更宽自行调 */
+  z-index: 1000;
+  width: 220px;                     /* 展开时宽度 */
   padding: 10px 12px;
   background: rgba(255,255,255,.85);
   backdrop-filter: blur(8px);
   border: 1px solid #ddd;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,.12);
-  overflow: hidden;               /* 关键：外层不滚动，避免“双层滚动条” */
-  pointer-events: auto;           /* 确保可以接收滚动/点击 */
+  transition: width .18s ease, height .18s ease, border-radius .18s ease, box-shadow .18s ease, opacity .18s ease;
 }
 
-/* 标题行（按钮） */
-.toc-toggle{
-  display:flex; align-items:center; gap:8px;
-  background:transparent; border:0; width:100%;
-  font-weight:700; color:#444; cursor:pointer;
-}
-
-/* 列表本体：只有它滚动 */
-.toc-list{
-  display:none;                   /* 默认折叠 */
-  margin-top: 6px; padding: 4px 0;
-  overflow: auto;                 /* 只有列表滚动 */
-  -webkit-overflow-scrolling: touch; /* iOS 惯性滚动 */
-  overscroll-behavior: contain;   /* 列表边缘不把页面带着滚 */
-  touch-action: pan-y;            /* 防止某些浏览器拦截纵向滚动 */
-}
+/* 列表默认隐藏；展开(open)时显示 */
+.toc-bubble .toc-list{ display:none; margin-top:6px; padding:4px 0; overflow:auto; }
 .toc-bubble.open .toc-list{ display:block; }
 
-.toc-item{
-  display:block; padding:4px 6px; border-radius:8px;
-  color:#333; text-decoration:none; font-size:.92rem; line-height:1.35;
+/* 收起态：小圆点 */
+.toc-bubble.collapsed{
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border-radius: 9999px;            /* 圆形 */
+  box-shadow: 0 6px 20px rgba(0,0,0,.10);
 }
+
+/* 收起态时只显示图标，隐藏文字与列表 */
+.toc-bubble.collapsed .toc-label{ display:none; }
+.toc-bubble.collapsed .toc-list{ display:none !important; }
+
+/* 按钮布局 */
+.toc-toggle{
+  display:flex; align-items:center; gap:8px;
+  width:100%; background:transparent; border:0; cursor:pointer;
+  font-weight:700; color:#444;
+}
+
+/* 列表项（沿用你原样式） */
+.toc-item{ display:block; padding:4px 6px; border-radius:8px; color:#333; text-decoration:none; font-size:.92rem; line-height:1.35; }
 .toc-item.lv2{ padding-left:14px; opacity:.9; }
 .toc-item:hover{ background:#f2f2f2; }
 .toc-item.active{ background:#e9eef6; color:#1f3b77; }
 
-/* 只给列表定制滚动条 */
 .toc-list::-webkit-scrollbar{ width:6px; }
 .toc-list::-webkit-scrollbar-thumb{ background:#d0d0d0; border-radius:8px; }
 
-@media (max-width:900px){
-  .toc-bubble{ display:none; }
-}
+/* 小屏隐藏（按需） */
+@media (max-width:900px){ .toc-bubble{ display:none; } }
