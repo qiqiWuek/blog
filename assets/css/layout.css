@@ -243,7 +243,7 @@ a:hover{ text-decoration:underline; }
   z-index: 10050;                 /* 再加一点，避免被别的层盖住 */
   top: 90px;                      /* JS 会改为横幅底部 + 12px */
   left: 12px;                     /* JS 会改成你要的页面左沿距离 */
-  width: 280px;                   /* 需要更窄/更宽自行调 */
+  width: 250px;                   /* 需要更窄/更宽自行调 */
   padding: 10px 12px;
   background: rgba(255,255,255,.85);
   backdrop-filter: blur(8px);
@@ -265,7 +265,6 @@ a:hover{ text-decoration:underline; }
 .toc-list{
   display:none;                   /* 默认折叠 */
   margin-top: 6px; padding: 4px 0;
-  max-height: calc(100vh - 180px);/* 视口内滚完；需要更高就把 180 调小 */
   overflow: auto;                 /* 只有列表滚动 */
   -webkit-overflow-scrolling: touch; /* iOS 惯性滚动 */
   overscroll-behavior: contain;   /* 列表边缘不把页面带着滚 */

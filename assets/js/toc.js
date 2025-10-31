@@ -57,22 +57,34 @@
   }, { rootMargin: '0px 0px -70% 0px', threshold: [0, 1] });
   headings.forEach(h => obs.observe(h));
 
-  // 6) 把 TOC 放到“横幅/无图标题”的底沿，并固定到页面左沿
-  function placeTOC() {
-    const hero = document.querySelector('.hero-banner') || document.querySelector('.hero-plain');
-    let top = 90;
-    if (hero) top = hero.getBoundingClientRect().bottom + 12;  // 横幅底沿 + 12px
-    bubble.style.top  = Math.max(12, Math.round(top)) + 'px';
-    bubble.style.left = '12px';                                // 页面左沿 12px（想更靠边改这里）
-  }
+  // === 6) 定位到横幅/无图标题下沿，并给目录列表设置“可滚高度” ===
+    function placeTOC() {
+      const hero = document.querySelector('.hero-banner') || document.querySelector('.hero-plain');
+      let top = 90;
+      if (hero) top = hero.getBoundingClientRect().bottom + 12;  // 横幅底沿 + 12px
+      bubble.style.top  = Math.max(12, Math.round(top)) + 'px';
+      bubble.style.left = '12px';                                 // 页面左沿 12px
 
-  // 初次 + 变化时重算（用 rAF 节流一下更稳）
-  const raf = cb => window.requestAnimationFrame ? requestAnimationFrame(cb) : cb();
-  const recalc = () => raf(placeTOC);
-  window.addEventListener('load',   recalc);
-  window.addEventListener('resize', recalc);
-  window.addEventListener('scroll', () => { if (window.scrollY < 240) recalc(); });
+      // —— 新增：动态列表高度，保证能滚到最后一项
+      // 先确保列表本身可滚
+      list.style.overflow = 'auto';
+      list.style.webkitOverflowScrolling = 'touch';
+      // 计算从气泡顶部到视口底部的空间
+      const bcr   = bubble.getBoundingClientRect();
+      const space = window.innerHeight - bcr.top - 16;            // 留 16px 底部间距
+      const maxH  = Math.max(120, space);                         // 至少给 120px
+      list.style.maxHeight = maxH + 'px';
+    }
 
-  // 有些图片横幅会晚加载，再补一刀
-  setTimeout(recalc, 300);
+    // 初次 + 变化时重算（rAF 轻微节流）
+    const raf = cb => (window.requestAnimationFrame ? requestAnimationFrame(cb) : cb());
+    const recalc = () => raf(placeTOC);
+
+    window.addEventListener('load',   recalc);
+    window.addEventListener('resize', recalc);
+    window.addEventListener('scroll', () => { if (window.scrollY < 240) recalc(); });
+
+    // 图片/字体晚加载兜底
+    setTimeout(recalc, 300);
+    setTimeout(recalc, 1000);
 })();
