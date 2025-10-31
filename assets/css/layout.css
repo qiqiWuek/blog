@@ -286,3 +286,65 @@ a:hover{ text-decoration:underline; }
 
 /* 小屏隐藏（按需） */
 @media (max-width:900px){ .toc-bubble{ display:none; } }
+
+/* ===== Archive timeline ===== */
+.timeline{
+  position: relative;
+  margin: 0 0 2.4rem 1.75rem;  /* 左边给竖线让位 */
+  padding: 0;
+  list-style: none;
+}
+.timeline::before{
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: #e5e7eb;         /* 时间线竖线 */
+}
+
+.tl-item{
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-left: 1.25rem;        /* 节点点到内容的距离 */
+  margin: .55rem 0 .9rem;
+}
+.tl-item::before{
+  content: "";
+  position: absolute;
+  left: -5px;                   /* 小圆点居中在线上 */
+  top: .9rem;
+  width: 10px; height: 10px;
+  background: #fff;
+  border: 2px solid #9ca3af;    /* 小圆点描边 */
+  border-radius: 9999px;
+  box-shadow: 0 0 0 3px rgba(156,163,175,.15);
+}
+
+.tl-year{
+  margin: 2rem 0 1rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.tl-date{
+  width: 76px;
+  text-align: right;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums; /* 等宽数字，更整齐 */
+}
+.tl-date .d{ font-weight: 700; }
+.tl-date .m{ opacity: .9; }
+
+.tl-link{
+  color: var(--link);
+  text-decoration: none;
+}
+.tl-link:hover{ text-decoration: underline; }
+
+/* 小屏收紧 */
+@media (max-width: 640px){
+  .timeline{ margin-left: 1.2rem; }
+  .tl-date{ width: 64px; }
+}
