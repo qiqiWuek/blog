@@ -184,11 +184,6 @@ a:hover{ text-decoration:underline; }
   text-align: center;      /* 整体居中 */
 }
 
-/* Archive page */
-.page-archive h2 { margin: 1.2rem 0 .6rem; }
-.page-archive ul { list-style: none; padding-left: 0; }
-.page-archive li { margin: .3rem 0; }
-
 
 /* ===== 固定在左上角的迷你导航（滚动不消失） ===== */
 :root{ --safe-top: max(10px, env(safe-area-inset-top)); } /* 适配 iOS 刘海 */

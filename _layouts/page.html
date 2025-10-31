@@ -11,9 +11,12 @@
 <body>
 
 {% include top-nav.html %}
-<!-- 首页横幅：铺满整个屏幕宽度 -->
+
+{%- comment -%}
+Home hero section – only visible on the index page (/)
+{%- endcomment -%}
 {% if page.url == '/' %}
-<section class="home-hero" style="background-image:url('{{ '/images/home2.jpg' | relative_url }}')">
+<section class="home-hero" style="background-image:url('{{ '/images/home6.jpg' | relative_url }}')">
     <div class="home-hero__overlay"></div>
     <div class="home-hero__text">
         <h1>Wuke’s rabbit hole ☕️</h1>
@@ -22,12 +25,22 @@
 </section>
 {% endif %}
 
-<main class="wrap wide">
+{%- comment -%}
+Generic hero section – shown on any non-home page that provides "image:" in the front matter
+{%- endcomment -%}
+{% if page.url != '/' and page.image %}
+<section class="hero-banner" style="background-image:url('{{ page.image | relative_url }}')">
+    <div class="home-hero__overlay"></div>
+    <div class="home-hero__text">
+        <h1>{{ page.title }}</h1>
+        {% if page.subtitle %}<p>{{ page.subtitle }}</p>{% endif %}
+    </div>
+</section>
+{% endif %}
+
+<main class="wrap {% if page.classes %}{{ page.classes }}{% else %}wide{% endif %}">
     {{ content }}
 
-    {% if page.comments == true %}
-        {% include giscus.html %}
-    {% endif %}
 </main>
 
 </body>

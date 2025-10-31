@@ -3,7 +3,7 @@ layout: page
 title: "Archive"
 permalink: /archive/
 classes: page-archive
-image: /images/home2.jpg 
+image: /images/home6.jpg 
 ---
 
 # All Posts…..
