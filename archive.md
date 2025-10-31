@@ -8,4 +8,6 @@ image: /images/home6.jpg
 
 # All Posts
 
-{% include archive-sections.html %}
+<div class="archive-sections" markdown="0">
+  {% include archive-sections.html %}
+</div>
