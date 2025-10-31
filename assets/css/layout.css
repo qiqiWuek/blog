@@ -237,25 +237,47 @@ a:hover{ text-decoration:underline; }
 /* ===== Floating TOC bubble ===== */
 .toc-bubble{
   position: fixed; top: 90px; left: 14px; z-index: 1000;
-  width: 300px; padding: 10px 12px;
+  width: 160px;                 /* 你要的更窄 */
+  padding: 8px 10px;
   background: rgba(255,255,255,.85); backdrop-filter: blur(8px);
   border: 1px solid #ddd; border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,.12);
-  max-height: none; overflow: visible;
+  display: flex;                /* 关键：外壳不滚动 */
+  flex-direction: column;
+  max-height: calc(100vh - 120px);   /* 外壳高度限制到视口内 */
+  overflow: hidden;             /* 外壳不出现滚动条 */
 }
-.toc-bubble::-webkit-scrollbar{ width:0; height:0; }
+
+/* 按钮 */
 .toc-toggle{
+  flex: 0 0 auto;
   display:flex; align-items:center; gap:8px;
   width:100%; background:transparent; border:0;
   font-weight:700; color:#444; cursor:pointer;
 }
-.toc-bubble .toc-list{ display:none; margin-top:8px; padding:4px 0; }
-.toc-bubble.open .toc-list{ display:block; }
-.toc-item{
-  display:block; padding:6px 8px; border-radius:8px;
-  color:#333; text-decoration:none;
+
+/* 列表默认隐藏；展开时显示并可滚动 */
+.toc-bubble .toc-list{
+  display: none;
+  margin-top: 6px; padding: 4px 0;
+  overflow: auto;                            /* 关键：列表滚动 */
+  max-height: calc(100vh - 170px);           /* 视口内滚完 */
+  overscroll-behavior: contain;
 }
-.toc-item.lv2{ padding-left:20px; font-size:.95rem; opacity:.9; }
+.toc-bubble.open .toc-list{ display:block; }
+
+/* 项目样式（可与原来一致） */
+.toc-item{
+  display:block; padding:4px 6px; border-radius:8px;
+  color:#333; text-decoration:none; font-size:0.92rem;
+}
+.toc-item.lv2{ padding-left:14px; opacity:.9; }
 .toc-item:hover{ background:#f2f2f2; }
 .toc-item.active{ background:#e9eef6; color:#1f3b77; }
-@media (max-width: 900px){ .toc-bubble{ display:none; } } /* 小屏自动隐藏 */
+
+/* 只给列表定制滚动条；别再对 .toc-bubble 隐藏滚动条 */
+.toc-list::-webkit-scrollbar{ width:6px; }
+.toc-list::-webkit-scrollbar-thumb{ background:#d0d0d0; border-radius:8px; }
+
+/* 小屏隐藏 TOC */
+@media (max-width: 900px){ .toc-bubble{ display:none; } }
