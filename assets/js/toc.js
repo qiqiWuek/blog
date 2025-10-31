@@ -53,25 +53,42 @@
   }
 
   // === 放到横幅底部，并与正文左缘对齐 ===
-  function placeTOC() {
-    // 1) top：横幅（有图）或无图标题区的“底部 + 12px”
-    const hero = document.querySelector('.hero-banner') || document.querySelector('.hero-plain');
-    let top = 90; // fallback
-    if (hero) {
-      const r = hero.getBoundingClientRect();
-      top = Math.max(12, r.bottom + 12);   // fixed 定位 -> 直接用 viewport 的 bottom
-    }
-    bubble.style.top = `${Math.round(top)}px`;
-
-    // 2) left：与正文容器左边缘齐
-    const wrap = document.querySelector('.wrap.post') || document.querySelector('.wrap');
-    if (wrap) {
-      const wr = wrap.getBoundingClientRect();
-      bubble.style.left = `${Math.max(8, Math.round(wr.left))}px`;
-    }
+  /* 外层气泡：不滚动、不显示滚动条 */
+  .toc-bubble{
+    position: fixed;
+    top: 90px;              /* JS 会覆盖 */
+    left: 8px;              /* 先兜底写死在最左 */
+    z-index: 1000;
+    width: 160px;           /* ← 比现在窄一半，按需调 150~180 */
+    padding: 10px 12px;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    max-height: none;       /* ← 不限制高度 */
+    overflow: visible;      /* ← 关键：不要让外层滚动 */
   }
 
-  window.addEventListener('load',   placeTOC);
-  window.addEventListener('resize', placeTOC);
-  window.addEventListener('scroll', () => { if (window.scrollY < 200) placeTOC(); });
+  /* 列表本身滚动 */
+  .toc-bubble .toc-list{
+    display: none;
+    margin-top: 6px; padding: 4px 0;
+    overflow: auto;                    /* ← 只让列表滚动 */
+    max-height: calc(100vh - 170px);   /* 视口内滚完即可 */
+    overscroll-behavior: contain;
+  }
+  .toc-bubble.open .toc-list{ display:block; }
+
+  /* 更紧凑一点的行距，窄卡片更好看 */
+  .toc-item{ display:block; padding:4px 6px; border-radius:8px; color:#333; text-decoration:none; font-size:.9rem; line-height:1.35; }
+  .toc-item.lv2{ padding-left:14px; opacity:.9; }
+  .toc-item:hover{ background:#f2f2f2; }
+  .toc-item.active{ background:#e9eef6; color:#1f3b77; }
+
+  /* 只给列表定制滚动条 */
+  .toc-list::-webkit-scrollbar{ width:6px; }
+  .toc-list::-webkit-scrollbar-thumb{ background:#d0d0d0; border-radius:8px; }
+
+  @media (max-width:900px){ .toc-bubble{ display:none; } }
 })();

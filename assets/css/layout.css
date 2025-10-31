@@ -234,44 +234,42 @@ a:hover{ text-decoration:underline; }
   .nav-chip{ padding:5px 9px; font-size:13px; }
 }
 
-/* -- TOC bubble：fallback 定位，JS 会在加载后覆盖 top/left -- */
+/* ===== 文章内浮动目录气泡 ===== */
+
+/* 外层气泡：不滚动、不显示滚动条 */
 .toc-bubble{
   position: fixed;
-  top: 90px;               /* 兜底 */
-  left: 14px;              /* 兜底 */
+  top: 90px;              /* JS 会覆盖 */
+  left: 8px;              /* 先兜底写死在最左 */
   z-index: 1000;
-  width: 260px;
+  width: 160px;           /* ← 比现在窄一半，按需调 150~180 */
   padding: 10px 12px;
   background: rgba(255,255,255,.85);
   backdrop-filter: blur(8px);
   border: 1px solid #ddd;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,.12);
-  max-height: 55vh;
-  overflow: auto;
+  max-height: none;       /* ← 不限制高度 */
+  overflow: visible;      /* ← 关键：不要让外层滚动 */
 }
 
-.toc-toggle{
-  flex: 0 0 auto;
-  display:flex; align-items:center; gap:8px;
-  width:100%; background:transparent; border:0;
-  font-weight:700; color:#444; cursor:pointer;
-}
-
+/* 列表本身滚动 */
 .toc-bubble .toc-list{
-  display:none;
-  margin-top:6px; padding:4px 0;
-  overflow:auto;
-  max-height: calc(100vh - 170px);
+  display: none;
+  margin-top: 6px; padding: 4px 0;
+  overflow: auto;                    /* ← 只让列表滚动 */
+  max-height: calc(100vh - 170px);   /* 视口内滚完即可 */
   overscroll-behavior: contain;
 }
 .toc-bubble.open .toc-list{ display:block; }
 
-.toc-item{ display:block; padding:4px 6px; border-radius:8px; color:#333; text-decoration:none; font-size:.92rem; }
+/* 更紧凑一点的行距，窄卡片更好看 */
+.toc-item{ display:block; padding:4px 6px; border-radius:8px; color:#333; text-decoration:none; font-size:.9rem; line-height:1.35; }
 .toc-item.lv2{ padding-left:14px; opacity:.9; }
 .toc-item:hover{ background:#f2f2f2; }
 .toc-item.active{ background:#e9eef6; color:#1f3b77; }
 
+/* 只给列表定制滚动条 */
 .toc-list::-webkit-scrollbar{ width:6px; }
 .toc-list::-webkit-scrollbar-thumb{ background:#d0d0d0; border-radius:8px; }
 
