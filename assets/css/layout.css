@@ -235,35 +235,41 @@ a:hover{ text-decoration:underline; }
 }
 
 
-/* === Floating TOC bubble === */
+/* === Floating TOC bubble – final === */
+
+/* 外层只负责定位与外观；不产生滚动条 */
 .toc-bubble{
   position: fixed;
-  top: 90px;            /* JS 会在运行时改到横幅下沿 */
-  left: 8px;            /* JS 会对齐到正文左边 */
-  z-index: 1000;
-  width: 210px;         /* 比之前稍宽，如要更窄/宽自行调 */
+  z-index: 10050;                 /* 再加一点，避免被别的层盖住 */
+  top: 90px;                      /* JS 会改为横幅底部 + 12px */
+  left: 12px;                     /* JS 会改成你要的页面左沿距离 */
+  width: 280px;                   /* 需要更窄/更宽自行调 */
   padding: 10px 12px;
   background: rgba(255,255,255,.85);
   backdrop-filter: blur(8px);
   border: 1px solid #ddd;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,.12);
-  max-height: none;     /* 外层不滚动 */
-  overflow: visible;
+  overflow: hidden;               /* 关键：外层不滚动，避免“双层滚动条” */
+  pointer-events: auto;           /* 确保可以接收滚动/点击 */
 }
 
+/* 标题行（按钮） */
 .toc-toggle{
   display:flex; align-items:center; gap:8px;
-  width:100%; background:transparent; border:0;
+  background:transparent; border:0; width:100%;
   font-weight:700; color:#444; cursor:pointer;
 }
 
-.toc-bubble .toc-list{
-  display:none;
-  margin-top:6px; padding:4px 0;
-  overflow:auto;                    /* 只让列表滚动 */
-  max-height:calc(100vh - 170px);   /* 视口内滚完 */
-  overscroll-behavior:contain;
+/* 列表本体：只有它滚动 */
+.toc-list{
+  display:none;                   /* 默认折叠 */
+  margin-top: 6px; padding: 4px 0;
+  max-height: calc(100vh - 180px);/* 视口内滚完；需要更高就把 180 调小 */
+  overflow: auto;                 /* 只有列表滚动 */
+  -webkit-overflow-scrolling: touch; /* iOS 惯性滚动 */
+  overscroll-behavior: contain;   /* 列表边缘不把页面带着滚 */
+  touch-action: pan-y;            /* 防止某些浏览器拦截纵向滚动 */
 }
 .toc-bubble.open .toc-list{ display:block; }
 
@@ -275,6 +281,7 @@ a:hover{ text-decoration:underline; }
 .toc-item:hover{ background:#f2f2f2; }
 .toc-item.active{ background:#e9eef6; color:#1f3b77; }
 
+/* 只给列表定制滚动条 */
 .toc-list::-webkit-scrollbar{ width:6px; }
 .toc-list::-webkit-scrollbar-thumb{ background:#d0d0d0; border-radius:8px; }
 

@@ -1,72 +1,78 @@
 (function () {
-  const headings = document.querySelectorAll('.post-body h3, .post-body h4');
-  const list = document.querySelector('#toc .toc-list');
-  const bubble = document.getElementById('toc');     // ✅ 只声明一次
+  // 1) 目标小标题：支持 h3~h6
+  const headings = document.querySelectorAll('.post-body h3, .post-body h4, .post-body h5, .post-body h6');
+  const bubble   = document.getElementById('toc');
+  const list     = bubble ? bubble.querySelector('.toc-list') : null;
   if (!bubble || !list) return;
 
-  // 生成 slug
+  // 2) 生成 slug（没 id 的标题补 id）
   const slug = s => s.toLowerCase()
-    .replace(/<.*?>/g,'')
-    .replace(/[^\w\u4e00-\u9fa5\- ]+/g,'')
-    .trim().replace(/\s+/g,'-');
+    .replace(/<.*?>/g, '')
+    .replace(/[^\w\u4e00-\u9fa5\- ]+/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
 
-  // 构建目录
   headings.forEach(h => {
     if (!h.id) h.id = slug(h.textContent);
     const a = document.createElement('a');
-    a.href = '#'+h.id;
+    a.href = '#' + h.id;
     a.textContent = h.textContent;
-    a.className = 'toc-item ' + (h.tagName === 'H4' ? 'lv2' : 'lv1');
+    const lv = h.tagName === 'H4' || h.tagName === 'H5' || h.tagName === 'H6' ? 'lv2' : 'lv1';
+    a.className = 'toc-item ' + lv;
     list.appendChild(a);
   });
 
-  // 平滑滚动
+  // 没有小标题则隐藏气泡
+  if (!headings.length) { bubble.style.display = 'none'; return; }
+
+  // 3) 点击平滑滚动
   list.addEventListener('click', e => {
     const link = e.target.closest('a.toc-item');
     if (!link) return;
     e.preventDefault();
-    const rawId = link.getAttribute('href').slice(1);
-    const safeSel = (window.CSS && CSS.escape) ? `#${CSS.escape(rawId)}` : `#${rawId}`;
-    const target = document.getElementById(rawId) || document.querySelector(safeSel);
+    const rawId  = link.getAttribute('href').slice(1);
+    const safeId = (window.CSS && CSS.escape) ? CSS.escape(rawId) : rawId;
+    const target = document.getElementById(rawId) || document.querySelector('#' + safeId);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      history.replaceState(null, '', `#${rawId}`);
+      history.replaceState(null, '', '#' + rawId);
     }
   });
 
-  // 折叠
+  // 4) 折叠/展开
   const toggle = bubble.querySelector('.toc-toggle');
   if (toggle) toggle.addEventListener('click', () => bubble.classList.toggle('open'));
+  // 默认展开：如需默认折叠，删掉下面这行即可
+  bubble.classList.add('open');
 
-  // 滚动高亮
-  if (headings.length) {
-    const obs = new IntersectionObserver(entries => {
-      let activeId = null;
-      entries.forEach(en => { if (en.isIntersecting) activeId = en.target.id; });
-      if (activeId) {
-        list.querySelectorAll('.toc-item.active').forEach(n => n.classList.remove('active'));
-        const cur = list.querySelector(`.toc-item[href="#${activeId}"]`);
-        if (cur) cur.classList.add('active');
-      }
-    }, { rootMargin: '0px 0px -70% 0px', threshold: [0,1] });
-    headings.forEach(h => obs.observe(h));
+  // 5) 滚动高亮
+  const obs = new IntersectionObserver(entries => {
+    let activeId = null;
+    entries.forEach(en => { if (en.isIntersecting) activeId = en.target.id; });
+    if (activeId) {
+      list.querySelectorAll('.toc-item.active').forEach(n => n.classList.remove('active'));
+      const cur = list.querySelector(`.toc-item[href="#${activeId}"]`);
+      if (cur) cur.classList.add('active');
+    }
+  }, { rootMargin: '0px 0px -70% 0px', threshold: [0, 1] });
+  headings.forEach(h => obs.observe(h));
+
+  // 6) 把 TOC 放到“横幅/无图标题”的底沿，并固定到页面左沿
+  function placeTOC() {
+    const hero = document.querySelector('.hero-banner') || document.querySelector('.hero-plain');
+    let top = 90;
+    if (hero) top = hero.getBoundingClientRect().bottom + 12;  // 横幅底沿 + 12px
+    bubble.style.top  = Math.max(12, Math.round(top)) + 'px';
+    bubble.style.left = '12px';                                // 页面左沿 12px（想更靠边改这里）
   }
 
-    function placeTOC() {
-      const hero = document.querySelector('.hero-banner') || document.querySelector('.hero-plain');
+  // 初次 + 变化时重算（用 rAF 节流一下更稳）
+  const raf = cb => window.requestAnimationFrame ? requestAnimationFrame(cb) : cb();
+  const recalc = () => raf(placeTOC);
+  window.addEventListener('load',   recalc);
+  window.addEventListener('resize', recalc);
+  window.addEventListener('scroll', () => { if (window.scrollY < 240) recalc(); });
 
-      // 计算横幅底部，top 改动保持原逻辑
-      let top = 90;
-      if (hero) top = hero.getBoundingClientRect().bottom + 12;
-
-      // 固定在页面左沿，不再随正文居中
-      const left = 20; // ← 你可以改成 0, 10, 20，看想离屏幕边多近
-
-      bubble.style.top = `${Math.round(top)}px`;
-      bubble.style.left = `${left}px`;
-    }
-  window.addEventListener('load',   placeTOC);
-  window.addEventListener('resize', placeTOC);
-  window.addEventListener('scroll', () => { if (window.scrollY < 200) placeTOC(); });
-
+  // 有些图片横幅会晚加载，再补一刀
+  setTimeout(recalc, 300);
 })();
