@@ -17,14 +17,20 @@
     list.appendChild(a);
   });
 
-  list.addEventListener('click', e=>{
-    if(e.target.matches('a.toc-item')){
-      e.preventDefault();
-      document.querySelector(e.target.getAttribute('href'))
-        .scrollIntoView({behavior:'smooth', block:'start'});
-      history.replaceState(null,'',e.target.getAttribute('href'));
-    }
-  });
+list.addEventListener('click', (e)=>{
+  const link = e.target.closest('a.toc-item');
+  if(!link) return;
+  e.preventDefault();
+
+  const rawId = link.getAttribute('href').slice(1);
+  const safeSel = window.CSS && CSS.escape ? `#${CSS.escape(rawId)}` : `#${rawId}`;
+  const target = document.getElementById(rawId) || document.querySelector(safeSel);
+
+  if(target){
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', `#${rawId}`);
+  }
+});
 
   const bubble = document.getElementById('toc');
   const toggle = bubble.querySelector('.toc-toggle');
