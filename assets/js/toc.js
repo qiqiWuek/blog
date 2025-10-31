@@ -52,43 +52,21 @@
     headings.forEach(h => obs.observe(h));
   }
 
-  // === 放到横幅底部，并与正文左缘对齐 ===
-  /* 外层气泡：不滚动、不显示滚动条 */
-  .toc-bubble{
-    position: fixed;
-    top: 90px;              /* JS 会覆盖 */
-    left: 8px;              /* 先兜底写死在最左 */
-    z-index: 1000;
-    width: 160px;           /* ← 比现在窄一半，按需调 150~180 */
-    padding: 10px 12px;
-    background: rgba(255,255,255,.85);
-    backdrop-filter: blur(8px);
-    border: 1px solid #ddd;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.12);
-    max-height: none;       /* ← 不限制高度 */
-    overflow: visible;      /* ← 关键：不要让外层滚动 */
-  }
+    function placeTOC() {
+      const hero = document.querySelector('.hero-banner') || document.querySelector('.hero-plain');
 
-  /* 列表本身滚动 */
-  .toc-bubble .toc-list{
-    display: none;
-    margin-top: 6px; padding: 4px 0;
-    overflow: auto;                    /* ← 只让列表滚动 */
-    max-height: calc(100vh - 170px);   /* 视口内滚完即可 */
-    overscroll-behavior: contain;
-  }
-  .toc-bubble.open .toc-list{ display:block; }
+      // 计算横幅底部，top 改动保持原逻辑
+      let top = 90;
+      if (hero) top = hero.getBoundingClientRect().bottom + 12;
 
-  /* 更紧凑一点的行距，窄卡片更好看 */
-  .toc-item{ display:block; padding:4px 6px; border-radius:8px; color:#333; text-decoration:none; font-size:.9rem; line-height:1.35; }
-  .toc-item.lv2{ padding-left:14px; opacity:.9; }
-  .toc-item:hover{ background:#f2f2f2; }
-  .toc-item.active{ background:#e9eef6; color:#1f3b77; }
+      // 固定在页面左沿，不再随正文居中
+      const left = 20; // ← 你可以改成 0, 10, 20，看想离屏幕边多近
 
-  /* 只给列表定制滚动条 */
-  .toc-list::-webkit-scrollbar{ width:6px; }
-  .toc-list::-webkit-scrollbar-thumb{ background:#d0d0d0; border-radius:8px; }
+      bubble.style.top = `${Math.round(top)}px`;
+      bubble.style.left = `${left}px`;
+    }
+  window.addEventListener('load',   placeTOC);
+  window.addEventListener('resize', placeTOC);
+  window.addEventListener('scroll', () => { if (window.scrollY < 200) placeTOC(); });
 
-  @media (max-width:900px){ .toc-bubble{ display:none; } }
 })();
