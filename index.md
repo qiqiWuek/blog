@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Wuke's rabbit hole"
+title: "🏔️Wuke's rabbit hole"
 permalink: /
 ---
 Welcome to my cozy rabbit hole!<br>

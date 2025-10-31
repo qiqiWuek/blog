@@ -322,10 +322,14 @@ a:hover{ text-decoration:underline; }
   box-shadow: 0 0 0 3px rgba(156,163,175,.15);
 }
 
-.tl-year{
+/* 灰色年份标题 */
+.tl-year {
   margin: 2rem 0 1rem;
-  font-size: 1.8rem;
-  font-weight: 800;
+  font-size: 1.4rem;      /* 比原来的 1.8rem 小一点 */
+  font-weight: 700;
+  color: #555;            /* 灰色 */
+  border-left: 4px solid #e0e0e0;
+  padding-left: 10px;     /* 小装饰，让层次更柔和 */
 }
 
 .tl-date{
