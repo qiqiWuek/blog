@@ -186,82 +186,62 @@ a:hover{ text-decoration:underline; }
 
 
 /* ===== Fixed mini navigation (top-left, fused buttons, no seam) ===== */
-:root {
-  --safe-top: max(10px, env(safe-area-inset-top)); /* Safe area for iOS notch */
-}
+:root { --safe-top: max(10px, env(safe-area-inset-top)); }
 
-/* fixed position for top-left navigation */
-.top-nav.mini {
+.top-nav.mini{
   position: fixed;
   top: var(--safe-top);
   left: 14px;
   z-index: 9999;
   background: transparent;
   border: 0;
-  pointer-events: none; /* container passes clicks through */
+  pointer-events: none;          /* 容器不拦截，下面的按钮接管点击 */
 }
 
-/* inner container for buttons */
-.nav-mini {
+/* ✅ 把半透明背景/边框/圆角/阴影都给外层，一次性绘制，彻底无缝 */
+.nav-mini{
   display: inline-flex;
-  pointer-events: auto; /* only buttons are clickable */
-  /* gap removed so buttons can fuse */
+  pointer-events: auto;
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(8px);
+  border: 1px solid #d7d7d7;
+  border-radius: 999px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  overflow: hidden;              /* 让内部 hover 背景被圆角裁剪 */
 }
 
-/* unified "pill" style buttons */
-.nav-chip {
+/* 按钮本体：不再画边框/背景，就不会有双层叠加的接缝 */
+.nav-chip{
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 6px 14px;
-  font: 500 14px/1.2 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font: 500 14px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   color: #555;
   text-decoration: none;
-  border: 1px solid #d7d7d7;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  border-radius: 0; /* reset corners; handled below */
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: background .2s ease, color .2s ease;
 }
 
-/* ✅ remove double border and fix 1px seam */
-.nav-chip + .nav-chip {
-  border-left: none;      /* no double border */
-  margin-left: -1px;      /* overlap slightly to hide any seam */
-}
-
-/* left and right corners rounded */
-.nav-chip:first-child {
-  border-radius: 999px 0 0 999px;
-}
-.nav-chip:last-child {
-  border-radius: 0 999px 999px 0;
-}
-
-/* hover & active state */
-.nav-chip:hover {
+/* hover 给一个轻微的覆盖色，由于 overflow:hidden 不会溢出圆角 */
+.nav-chip:hover{
+  background: rgba(255,255,255,.14);
   color: #222;
-  border-color: #c9c9c9;
-  background: rgba(255, 255, 255, 0.92);
 }
 
-/* current page highlight */
-.nav-chip.active {
-  background: #fff;
+/* 当前页高亮（可按需调整对比度） */
+.nav-chip.active{
+  background: rgba(255,255,255,.26);
   color: #111;
   font-weight: 600;
 }
 
-/* mobile tweaks */
-@media (max-width: 640px) {
-  .top-nav.mini {
-    left: 8px;
-  }
-  .nav-chip {
-    padding: 5px 9px;
-    font-size: 13px;
-  }
+/* 移动端微调 */
+@media (max-width: 640px){
+  .top-nav.mini{ left: 8px; }
+  .nav-chip{ padding: 5px 9px; font-size: 13px; }
 }
 /* === Floating TOC bubble – final === */
 
