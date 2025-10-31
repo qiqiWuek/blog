@@ -185,7 +185,7 @@ a:hover{ text-decoration:underline; }
 }
 
 
-/* ===== Fixed mini navigation (top-left, fused buttons) ===== */
+/* ===== Fixed mini navigation (top-left, fused buttons, no seam) ===== */
 :root {
   --safe-top: max(10px, env(safe-area-inset-top)); /* Safe area for iOS notch */
 }
@@ -198,14 +198,14 @@ a:hover{ text-decoration:underline; }
   z-index: 9999;
   background: transparent;
   border: 0;
-  pointer-events: none; /* let the container pass clicks */
+  pointer-events: none; /* container passes clicks through */
 }
 
 /* inner container for buttons */
 .nav-mini {
   display: inline-flex;
   pointer-events: auto; /* only buttons are clickable */
-  /* gap: 8px;  removed so buttons can fuse */
+  /* gap removed so buttons can fuse */
 }
 
 /* unified "pill" style buttons */
@@ -225,9 +225,10 @@ a:hover{ text-decoration:underline; }
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-/* remove double border between chips */
+/* ✅ remove double border and fix 1px seam */
 .nav-chip + .nav-chip {
-  border-left: 0;
+  border-left: none;      /* no double border */
+  margin-left: -1px;      /* overlap slightly to hide any seam */
 }
 
 /* left and right corners rounded */
@@ -262,7 +263,6 @@ a:hover{ text-decoration:underline; }
     font-size: 13px;
   }
 }
-
 /* === Floating TOC bubble – final === */
 
 /* --- TOC：展开态（与你现有保持一致，可微调宽度） --- */
