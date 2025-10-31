@@ -1,7 +1,6 @@
-<!-- ✅ 顶部导航（首页和普通 page 共用） -->
 <nav class="top-nav mini">
     <div class="nav-mini">
-        <a class="nav-chip" href="{{ '/' | relative_url }}">🐾Home</a>
-        <a class="nav-chip" href="{{ '/archive/' | relative_url }}">🗂Archive</a>
+        <a class="nav-chip {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">🐾Home</a>
+        <a class="nav-chip {% if page.url contains '/archive/' %}active{% endif %}" href="{{ '/archive/' | relative_url }}">🗂Archive</a>
     </div>
 </nav>
