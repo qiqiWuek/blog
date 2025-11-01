@@ -356,38 +356,44 @@ a:hover{ text-decoration:underline; }
   font-style: italic;
 }
 
-/* ===== footer ===== */
+/* ===== Footer ===== */
 .site-footer {
-  background: #fafafa;
+  background: #f9fafb;
   border-top: 1px solid #eee;
-  padding: 0.8rem 0;
-  font-size: 0.9rem;
+  padding: 1rem 0;
   color: #666;
+  font-size: 0.9rem;
 }
 
 .footer-inner {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  max-width: 800px;
-  margin: 0 auto;
+  gap: 1rem;
+  justify-content: flex-start;
+  max-width: 800px;          /* 与正文 wrap 宽度一致 */
+  margin: 0 auto;            /* 居中整体 */
+  padding-left: 1rem;        /* 稍微往右缩一点，让左边有呼吸感 */
 }
 
-.footer-left a {
-  color: #666;
-  text-decoration: none;
+.footer-icon svg {
+  fill: #666;
+  transition: fill 0.2s ease;
+  flex-shrink: 0;
 }
 
-.footer-left a:hover {
-  text-decoration: underline;
-  color: #111;
+.footer-icon:hover svg {
+  fill: #000;
 }
 
-.footer-icon {
-  color: #666;
-  transition: color 0.2s ease;
+.footer-text {
+  margin: 0;
 }
 
-.footer-icon:hover {
+.footer-text a {
+  color: inherit;
+  text-decoration: underline dotted;
+}
+
+.footer-text a:hover {
   color: #111;
 }
