@@ -16,15 +16,25 @@
     <div class="hero-overlay"></div>
     <div class="hero-text">
         <h1 class="hero-title">{{ page.title }}</h1>
+        {% if page.subtitle %}
+        <p class="hero-subtitle">{{ page.subtitle }}</p>
+        {% endif %}
         <p class="hero-sub">Dive into the rabbit hole.</p>
-        {% if page.date %}<p class="hero-date">{{ page.date | date: "%b %d, %Y" }}</p>{% endif %}
+        {% if page.date %}
+        <p class="hero-date">{{ page.date | date: "%b %d, %Y" }}</p>
+        {% endif %}
     </div>
 </section>
 {% else %}
 <!-- 无封面时 -->
 <section class="hero-plain wrap">
     <h1 class="post-h1">{{ page.title }}</h1>
-    {% if page.date %}<p class="post-meta">{{ page.date | date: "%b %d, %Y" }}</p>{% endif %}
+    {% if page.subtitle %}
+    <p class="post-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+    {% if page.date %}
+    <p class="post-meta">{{ page.date | date: "%b %d, %Y" }}</p>
+    {% endif %}
 </section>
 {% endif %}
 
@@ -33,7 +43,7 @@
     <article class="post-body">
         {{ content }}
 
-        <!-- 🏷️ 在这里插入标签显示 -->
+        <!-- 🏷️ 标签显示 -->
         {% if page.tags and page.tags.size > 0 %}
         <hr class="post-sep">
         <div class="post-tags">

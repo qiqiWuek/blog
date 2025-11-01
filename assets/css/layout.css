@@ -339,3 +339,19 @@ a:hover{ text-decoration:underline; }
   color: #666;
   font-size: .9rem;
 }
+
+/* ===== subtitle ===== */
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: #d1d5db;        /* 柔灰色 */
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+  font-style: italic;     /* 可选：斜体显示 */
+}
+
+.post-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 0.3rem;
+  font-style: italic;
+}

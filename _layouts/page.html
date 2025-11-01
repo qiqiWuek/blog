@@ -37,5 +37,12 @@
 <main class="wrap {% if page.classes %}{{ page.classes }}{% else %}wide{% endif %}">
     {{ content }}
 </main>
+
+<footer class="site-footer">
+    <div class="wrap footer-inner">
+        <p>© {{ "now" | date: "%Y" }} {{ site.author | default: site.title }} · Built with Jekyll</p>
+    </div>
+</footer>
+
 </body>
 </html>
