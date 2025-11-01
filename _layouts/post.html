@@ -48,12 +48,6 @@
         </div>
         {% endif %}
 
-        {% if page.category %}
-        <div class="post-meta-category">
-            <span>Type: {{ page.category }}</span>
-        </div>
-        {% endif %}
-
         {% if page.comments == true %}
         {% include giscus.html %}
         {% endif %}
