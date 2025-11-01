@@ -355,3 +355,39 @@ a:hover{ text-decoration:underline; }
   margin-top: 0.3rem;
   font-style: italic;
 }
+
+/* ===== footer ===== */
+.site-footer {
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  padding: 1.2rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.footer-right {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.footer-icon:hover {
+  color: #000;
+  transform: scale(1.1);
+}
