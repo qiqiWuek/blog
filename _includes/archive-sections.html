@@ -10,7 +10,6 @@
     <h2 class="visually-hidden">By Year</h2>
     {% assign groups = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
     {% assign groups = groups | sort: "name" | reverse %}
-
     {% for year in groups %}
     <h3 class="tl-year">{{ year.name }}</h3>
     <ol class="timeline">
@@ -56,22 +55,14 @@
 <!-- By Type -->
 <section id="type" class="archive-section">
     <h2 class="visually-hidden">By Type</h2>
-
-    {%- comment -%}
-    兼容两种写法：
-    1) 单值：category: story / review
-    2) 数组：categories: [story, review]
-    {%- endcomment -%}
     {% assign stories = site.posts | where: "category", "story" %}
     {% if stories.size == 0 %}
     {% assign stories = site.posts | where_exp: "post", "post.categories contains 'story'" %}
     {% endif %}
-
     {% assign reviews = site.posts | where: "category", "review" %}
     {% if reviews.size == 0 %}
     {% assign reviews = site.posts | where_exp: "post", "post.categories contains 'review'" %}
     {% endif %}
-
     {% assign stories = stories | sort: "date" | reverse %}
     {% assign reviews = reviews | sort: "date" | reverse %}
 
@@ -108,23 +99,5 @@
     </ol>
 </section>
 
-<script>
-  (function () {
-    const ids = ["year","tag","type"];
-    const secs = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
-    const tabs = Object.fromEntries(ids.map(id => [id, document.getElementById("tab-"+id)]));
-
-    function activate(which){
-      ids.forEach(id=>{
-        secs[id].classList.toggle("active", id===which);
-        tabs[id].classList.toggle("active", id===which);
-      });
-    }
-    function current(){
-      const h = (location.hash || "#year").replace("#","");
-      return ids.includes(h) ? h : "year";
-    }
-    window.addEventListener("hashchange", ()=>activate(current()));
-    activate(current());
-  })();
-</script>
+<!-- 仅这一行：外部脚本 -->
+<script src="{{ '/assets/js/archive-nav.js' | relative_url }}" defer></script>

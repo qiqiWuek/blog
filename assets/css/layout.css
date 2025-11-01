@@ -294,3 +294,48 @@ a:hover{ text-decoration:underline; }
 
 /* 小屏隐藏（按需） */
 @media (max-width:900px){ .toc-bubble{ display:none; } }
+
+/*=====tag in post page ====*/
+.post-sep {
+  border: 0;
+  height: 1px;
+  background: #eee;
+  margin: 1.5rem 0 1rem;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .6rem;
+  margin-bottom: .5rem;
+}
+
+.post-tags__label {
+  font-weight: 600;
+  color: #666;
+  margin-right: .25rem;
+}
+
+.tag-chip {
+  display: inline-block;
+  padding: .2rem .6rem;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: .5rem;
+  text-decoration: none;
+  color: #555;
+  font-size: .9rem;
+  line-height: 1.2;
+}
+
+.tag-chip:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+}
+
+.post-meta-category {
+  margin-top: .75rem;
+  color: #666;
+  font-size: .9rem;
+}

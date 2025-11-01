@@ -11,7 +11,7 @@
 {% include top-nav.html %}
 
 {% if page.image %}
-<!-- 顶部全屏横幅（更高、更暗、透明 60%） -->
+<!-- 顶部全屏横幅 -->
 <section class="hero-banner" style="background-image:url('{{ page.image | relative_url }}')">
     <div class="hero-overlay"></div>
     <div class="hero-text">
@@ -33,8 +33,29 @@
     <article class="post-body">
         {{ content }}
 
+        <!-- 🏷️ 在这里插入标签显示 -->
+        {% if page.tags and page.tags.size > 0 %}
+        <hr class="post-sep">
+        <div class="post-tags">
+            <span class="post-tags__label">Tags:</span>
+            {% for tag in page.tags %}
+            <a
+                    class="tag-chip"
+                    href="{{ '/archive/' | relative_url }}#tag-{{ tag | slugify }}"
+                    title="See posts tagged {{ tag }}"
+            >#{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if page.category %}
+        <div class="post-meta-category">
+            <span>Type: {{ page.category }}</span>
+        </div>
+        {% endif %}
+
         {% if page.comments == true %}
-            {% include giscus.html %}
+        {% include giscus.html %}
         {% endif %}
     </article>
 </main>
